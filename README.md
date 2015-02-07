@@ -1,5 +1,5 @@
 
-<h1>IAW Slides Template</h1>
+<h1>IAW Slides</h1>
 
 ## Configuring the slides
 
