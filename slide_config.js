@@ -1,8 +1,8 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: 'Título',
-    subtitle: 'Subtitulo',
+    title: 'Interfaz DOM y Javascript',
+    subtitle: 'Modificación dinámica de páginas web',
    eventInfo: {
      title: 'Clase Práctica X',
      date: '7/2/2015'

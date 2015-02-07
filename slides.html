@@ -1,0 +1,457 @@
+<slide>
+    <hgroup>
+      <h2>Ejercicio</h2>
+    </hgroup>
+    <article class="bigger">
+        <p>Implemente una página web de una casa de comidas que permita a los usuarios armar un pedido:</p>
+      <ul class="build">
+        <li>agregando y quitando elementos al pedido,</li>
+        <li>calculando el precio total del mismo,</li>
+        <li>y actualizando la página de acuerdo a la interacción del usuario.</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Propuesta de Resolución</h2>
+    </hgroup>
+    <article class="bigger">
+        <ul class="build">
+            <li>Implementaremos la página web de una pizzería, </li>
+            <li>Mostrando inicialmente el listado completo de pizzas que se pueden pedir.</li>
+            <li class="build">En el momento que el usuario agrega o quita pizzas del pedido:
+                <ul>se actualizará la página para reflejar el estado del mismo y </ul>
+                <ul>se computará y mostrará el costo total.</ul>
+            </li>
+        </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <article>
+        <pre class="prettyprint" data-lang="html">
+&lt;table id=&quot;tabla&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;Comprar&lt;/th&gt;&lt;th&gt;Pizzas&lt;/th&gt;&lt;th&gt;Precio&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;th colspan=&quot;3&quot;&gt;Cl&aacute;sicas&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;input type=&quot;checkbox&quot;/&gt;
+            &lt;/td&gt;
+            &lt;td&gt;Fugazzeta&lt;/td&gt;
+            &lt;td&gt;20&lt;/td&gt;
+        &lt;/tr&gt;
+        ...
+&lt;/table&gt;
+&lt;div class=&quot;calculo&quot;&gt;
+    &lt;span class=&quot;total&quot;&gt;
+        Total: $ &lt;span id=&quot;total&quot;&gt;0.00&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/div&gt;</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <article>
+      <iframe data-src="http://localhost/~mariano/pizzas/js.html"></iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Interfaz DOM</h2>
+    </hgroup>
+    <article>
+        <pre class="prettyprint" data-lang="html">
+&lt;table id=&quot;tabla&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;Comprar&lt;/th&gt;&lt;th&gt;Pizzas&lt;/th&gt;&lt;th&gt;Precio&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;th colspan=&quot;3&quot;&gt;Cl&aacute;sicas&lt;/th&gt;&lt;/tr&gt;
+        <b>&lt;tr&gt;
+            &lt;td&gt;
+                &lt;input type=&quot;checkbox&quot;/&gt;
+            &lt;/td&gt;
+            &lt;td&gt;Fugazzeta&lt;/td&gt;
+            &lt;td&gt;20&lt;/td&gt;
+        &lt;/tr&gt;</b>
+        ...
+&lt;/table&gt;
+&lt;div class=&quot;calculo&quot;&gt;
+    &lt;span class=&quot;total&quot;&gt;
+        Total: $ &lt;span id=&quot;total&quot;&gt;0.00&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/div&gt;</pre>
+    </article>
+  </slide>
+    
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+            <li>Define la estructura lógica de los documentos y el modo en que se accede y manipula</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Interfaz DOM</h2>
+    </hgroup>
+    <article>
+        <ul class="build">
+            <li class="mid50">
+        <pre class="prettyprint" data-lang="html">
+&lt;tr&gt;
+    &lt;td&gt;
+        &lt;input type=&quot;checkbox&quot;/&gt;
+    &lt;/td&gt;
+    &lt;td&gt;Fugazzeta&lt;/td&gt;
+    &lt;td&gt;20&lt;/td&gt;
+&lt;/tr&gt;</pre>
+            </li>
+            <li class="mid50">
+                <img src="images/dom.png" class="reflect" alt="Diagrama DOM" title="Diagrama DOM">
+            </li>
+            <li>
+        <pre class="prettyprint" data-lang="javascript">
+// Tener acceso al primer elemento td
+<b>var primerElementoTD = elementoTR.firstChild;</b>
+// Tener acceso al segundo elemento td. La lista de hijos empieza en 0 (no en 1).
+<b>var segundoElementoTD = elementoTR.childNodes[1];</b>
+// Obtener el elemento input inclu&iacute;do en el primer elemento td
+<b>var input = elementoTR.getElementsByTagName('INPUT')[0];</b>
+// Cambiar el contenido del texto del segundo elemento td
+<b>segundoElementoTD.firstChild.data = &quot;Muzzarela&quot;;</b></pre>
+            </li>
+        </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <article>
+        <pre class="prettyprint" data-lang="html">
+<b>&lt;table id=&quot;tabla&quot;&gt;</b>
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;Comprar&lt;/th&gt;&lt;th&gt;Pizzas&lt;/th&gt;&lt;th&gt;Precio&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;th colspan=&quot;3&quot;&gt;Cl&aacute;sicas&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr <b>onclick=&quot;actualizarPedido(event)&quot;</b>&gt;
+            &lt;td&gt;
+                &lt;input type=&quot;checkbox&quot;/&gt;
+            &lt;/td&gt;
+            &lt;td&gt;Fugazzeta&lt;/td&gt;
+            &lt;td&gt;20&lt;/td&gt;
+        &lt;/tr&gt;
+        ...
+&lt;/table&gt;
+&lt;div class=&quot;calculo&quot;&gt;
+    &lt;span class=&quot;total&quot;&gt;
+        Total: $ <b>&lt;span id=&quot;total&quot;&gt;0.00&lt;/span&gt;</b>
+    &lt;/span&gt;
+&lt;/div&gt;</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modificación Dinámica de la Página Web</h2>
+    </hgroup>
+    <article class="smaller">
+        <span class="mid50">
+            <pre class="prettyprint" data-lang="javascript">
+function actualizarPedido(event) {
+    // obtengo el elemento que genero el evento
+    var target = event.target;
+    
+    // si el click NO se hizo sobre el input, tengo que actualizarlo
+    var actualizarInput = target.tagName !== 'INPUT';
+
+    // obtengo el elemento de la fila
+    while (target.tagName !== &quot;TR&quot;) {
+        target = target.parentNode;
+    }
+    // obtengo el checkbox correspondiente
+    var check = target.getElementsByTagName('INPUT')[0];
+    
+    if (actualizarInput) // actualizo el estado del checkbox
+        check.checked = !check.checked;
+    
+    //marco la fila como seleccionada o no, seg&uacute;n corresponda
+    target.setAttribute(&quot;class&quot;, check.checked ? &quot;selected&quot; : &quot;&quot;);
+
+    //recalculo el total
+    var total = computarTotal();
+    
+    document.getElementById(&quot;total&quot;).firstChild.data = total + &quot;.00&quot;;
+}</pre>
+        </span>
+        <span class="mid50" style="width:200px;">
+            <img src="images/dom.png" class="reflect" alt="Diagrama DOM" title="Diagrama DOM">
+        </span>
+
+    </article>
+  </slide>
+
+    <slide>
+    <hgroup>
+      <h2>Modificación Dinámica de la Página Web</h2>
+    </hgroup>
+    <article class="smaller">
+        <span class="mid50">
+        <pre class="prettyprint" data-lang="javascript">
+function computarTotal() {
+    var total = 0.0;  var i = 0;
+
+    //obtengo el elemento tabla
+    var tabla = document.getElementById(&quot;tabla&quot;);
+
+    //obtengo todos los elementos checkbox
+    var checkBoxs = tabla.getElementsByTagName('INPUT');
+
+    for (i = 0; i &lt; checkBoxs.length; i++) {
+
+        //si esta seleccionado
+        if (checkBoxs[i].checked) {
+            // obtengo la fila
+            var fila = checkBoxs[i].parentNode.parentNode;
+
+            // obtengo la tercer columna de la fila
+            var precio = fila.getElementsByTagName('TD')[2];
+
+            // el elemento precio contiene el valor de la pizza
+            total += parseFloat(precio.firstChild.data);
+        }
+    }
+    return total;
+}</pre>
+        </span>
+        <span class="mid50" style="width:200px;">
+            <img src="images/dom.png" class="reflect" alt="Diagrama DOM" title="Diagrama DOM">
+        </span>
+
+    </article>
+  </slide>
+
+  <slide>
+    <article>
+      <iframe data-src="http://localhost/~mariano/pizzas/js.html"></iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modelado de Datos con JSON</h2>
+    </hgroup>
+    <article>
+    <pre class="prettyprint" data-lang="json">
+var jsonPizzas = [
+    {
+        &quot;nombre&quot;: &quot;Fugazzeta&quot;,
+        &quot;precio&quot;: 45,
+        &quot;tipo&quot; : &quot;cl&aacute;sicas&quot;
+    },
+    {
+        &quot;nombre&quot;: &quot;Jam&oacute;n y Queso&quot;,
+        &quot;precio&quot;: 44,
+        &quot;tipo&quot; : &quot;cl&aacute;sicas&quot;
+    },
+    ...
+    {
+        &quot;nombre&quot;: &quot;Ciervo Ahumado&quot;,
+        &quot;precio&quot;: 52,
+        &quot;tipo&quot; : &quot;especiales&quot;
+   }
+}</pre>
+    </article>
+  </slide>
+
+    
+  <slide>
+    <hgroup>
+      <h2>Modificación Dinámica de la Página Web - V2</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function ordenarPizzas() {
+    var index;
+
+    var pizzas = new Object();
+    for (index = 0; index &lt; jsonPizzas.length; ++index) {
+        var pizza = jsonPizzas[index];
+        pizza.id = index;
+        pizza.enPedido = false;
+        var pizzasPorTipo;
+        if (pizzas.hasOwnProperty(pizza.tipo))
+            pizzasPorTipo = pizzas[pizza.tipo];
+        else {
+            pizzasPorTipo = new Array();
+            pizzas[pizza.tipo] = pizzasPorTipo;
+        }
+        pizzasPorTipo[pizzasPorTipo.length] = pizza;
+    }
+    return pizzas;
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modificación Dinámica de la Página Web - V2</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function mostrarPizzas(pizzas) {
+    var index;
+
+    for (var tipo in pizzas) {
+        agregarSubTitulo(tipo);
+        var pizzasPorTipo = pizzas[tipo];
+        for (index = 0; index &lt; pizzasPorTipo.length; ++index) {
+            agregarPizza(pizzasPorTipo[index]);
+        }
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modificación Dinámica de la Página Web - V2</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function agregarSubTitulo(subtitulo) {
+    var th = document.createElement('th');
+    th.setAttribute(&quot;colspan&quot;, &quot;3&quot;);
+    th.innerHTML = subtitulo;
+    var row = document.getElementById(&quot;tabla&quot;).insertRow(-1);
+    row.appendChild(th);
+}</pre>
+<pre class="prettyprint" data-lang="html">
+&lt;tr&gt;
+    &lt;th colspan=&quot;3&quot;&gt;
+        cl&aacute;sicas
+    &lt;/th&gt;
+&lt;/tr&gt;</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modificación Dinámica de la Página Web - V2</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function agregarPizza(pizza) {
+    var row = document.getElementById(&quot;tabla&quot;).insertRow(-1);
+    row.setAttribute(&quot;id&quot;, pizza.id);
+    row.setAttribute(&quot;onclick&quot;, &quot;actualizarPedido(event)&quot;);
+    var input = document.createElement('input');
+    input.setAttribute(&quot;type&quot;, &quot;checkbox&quot;);
+    row.insertCell(0).appendChild(input);
+    row.insertCell(1).innerHTML = pizza.nombre;
+    row.insertCell(2).innerHTML = pizza.precio;
+}</pre>
+      <pre class="prettyprint" data-lang="html">
+&lt;tr id=&quot;0&quot; onclick=&quot;actualizarPedido(event)&quot;&gt;
+    &lt;td&gt;
+         &lt;input type=&quot;checkbox&quot;&gt;
+    &lt;/td&gt;
+    &lt;td&gt;Fugazzeta&lt;/td&gt;
+    &lt;td&gt;45&lt;/td&gt;
+&lt;/tr&gt;</pre>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modificación Dinámica de la Página Web - V2</h2>
+    </hgroup>
+    <article>
+        <span class="mid50" style="width:600px;">
+      <pre class="prettyprint" data-lang="javascript">
+function actualizarPedido(e) {
+    var target = e.target;
+    while (target.tagName !== &quot;TR&quot;) {
+        target = target.parentNode;
+    }
+    var id = target.getAttribute(&quot;id&quot;);
+    
+    var pizza = jsonPizzas[id];
+    pizza.enPedido = !pizza.enPedido;
+
+    //le cambio el estado
+    actualizarEstado(id, pizza.enPedido);
+
+    //recalculo el total
+    actualizarTotal(computarTotal());
+}</pre>
+        </span>
+        <span class="mid50" style="width:200px;">
+            <img src="images/dom.png" class="reflect" alt="Diagrama DOM" title="Diagrama DOM">
+        </span>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modificación Dinámica de la Página Web - V2</h2>
+    </hgroup>
+    <article>
+        <span class="mid50">
+      <pre class="prettyprint" data-lang="javascript">
+function actualizarEstado(id, valor) {
+    //obtengo el elemento que genero el evento
+    var fila = document.getElementById(id);
+    
+    // obtengo el checkbox correspondiente
+    var check = fila.getElementsByTagName('INPUT')[0];
+
+    // actualizo el estado del checkbox
+    check.checked = valor;
+
+    //marco la fila como seleccionada o no
+    fila.setAttribute(&quot;class&quot;, valor ? &quot;selected&quot; : &quot;&quot;);
+}
+</pre>
+        </span>
+        <span class="mid50" style="width:200px;">
+            <img src="images/dom.png" class="reflect" alt="Diagrama DOM" title="Diagrama DOM">
+        </span>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modificación Dinámica de la Página Web - V2</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+/**
+ * Calcula el valor del pedido
+ */
+function computarTotal() {
+    var total = 0.0;
+
+    for (index = 0; index &lt; jsonPizzas.length; ++index) {
+        var pizza = jsonPizzas[index];
+        if (pizza.enPedido) {
+            total += pizza.precio;
+        }
+    }
+    return total;
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <article>
+      <iframe data-src="http://localhost/~mariano/pizzas/jsMejorado.html"></iframe>
+    </article>
+  </slide>
