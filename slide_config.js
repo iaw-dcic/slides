@@ -25,7 +25,7 @@ var SLIDE_CONFIG = {
     name: 'Mariano Tucat',
     company: 'DCIC - Universidad Nacional del Sur',
     gplus: 'https://www.google.com/+MarianoTucat',
-    twitter: '@eltuks',
+    twitter: '@eltucky',
     www: 'http://cs.uns.edu.ar/~mt/',
     github: 'http://github.com/MarianoTucat'
   }]
