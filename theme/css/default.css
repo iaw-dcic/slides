@@ -88,7 +88,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  opacity: 0;
   height: 100%;
   min-height: 740px;
   width: 100%;
@@ -1493,4 +1492,51 @@ aside.gdbar img {
   pre, code {
     font-family: monospace !important;
   }
+}
+
+.presentations {
+  margin-top: 20px;
+}
+.presentations > span {
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 40px;
+  line-height: 20px;
+  cursor: pointer;
+  color: white;
+  display: block;
+  width: 400px;
+}
+
+.presentations > span:hover {
+  background-color: grey;
+}
+
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px; 
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
 }

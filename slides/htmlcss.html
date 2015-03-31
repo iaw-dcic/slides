@@ -1,0 +1,453 @@
+<script>
+var SLIDE_CONFIG = {
+  // Slide settings
+  settings: {
+    name: 'htmlcss',
+    title: 'HTML & CSS',
+    subtitle: 'Ejemplos',
+   eventInfo: {
+     title: 'Clase Práctica 2',
+     date: '31/04/2015'
+   },
+    useBuilds: true, // Default: true. False will turn off slide animation builds.
+    usePrettify: true, // Default: true
+    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
+    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
+    //analytics: 'UA-XXXXXXXX-1', // TODO: Using this breaks GA for some reason (probably requirejs). Update your tracking code in template.html instead.
+    favIcon: 'images/logo-dcic.png',
+    fonts: [
+      'Open Sans:regular,semibold,italic,italicsemibold',
+      'Source Code Pro'
+    ],
+    //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
+  },
+
+  // Author information
+  presenters: [{
+    name: 'Mariano Tucat',
+    company: 'DCIC - Universidad Nacional del Sur',
+    gplus: 'https://www.google.com/+MarianoTucat',
+    twitter: '@eltucky',
+    www: 'http://cs.uns.edu.ar/~mt/',
+    github: 'http://github.com/MarianoTucat'
+  }]
+};
+</script>
+<slide>
+  <hgroup>
+    <h2>Doctype</h2>
+  </hgroup>
+  <article>
+      <ul class="build">
+        <li>La declaración de tipo de documento (DOCTYPE) no es un tag HTML y tiene que ser el primer elemento del documento HTML</li>
+        <li>Es una instrucción para qué los navegadores sepan que versión de HTML esperar.</li>
+        <li>
+          <pre class="prettyprint" data-lang="html">
+&lt;!-- HTML 5 --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;!-- HTML 4.01 Strict --&gt;
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; 
+&quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+&lt;!-- HTML 4.01 Transitional --&gt;
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; 
+&quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;!-- HTML 4.01 Frameset --&gt;
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Frameset//EN&quot; 
+&quot;http://www.w3.org/TR/html4/frameset.dtd&quot;&gt;</pre>
+        </li>
+      </ul>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Cáscara HTML</h2>
+  </hgroup>
+  <article>
+          <pre class="prettyprint" data-lang="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;T&#237;tulo del documento&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    Contenido del documento
+  &lt;/body&gt;
+
+&lt;/html&gt;</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Encabezados y Párrafos</h2>
+  </hgroup>
+  <article>
+    <ul class="build">
+      <li>
+        <pre class="prettyprint" data-lang="html">
+&lt;h1&gt;Encabezado h1&lt;/h1&gt;
+&lt;h2&gt;Encabezado h2&lt;/h2&gt;
+&lt;h3&gt;Encabezado h3&lt;/h3&gt;</pre>
+        <h1>Encabezado h1</h1>
+        <h2>Encabezado h2</h2>
+        <h3>Encabezado h3</h3>
+      </li>
+      <li>
+        <pre class="prettyprint" data-lang="html">
+&lt;p&gt;&#201;ste es un p&#225;rrafo&lt;/p&gt;
+&lt;p&gt;&#201;ste es otro p&#225;rrafo&lt;/p&gt;</pre>
+        <p>Éste es un párrafo</p>
+        <p>Éste es otro párrafo</p>
+      </li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Links e Imágenes</h2>
+  </hgroup>
+  <article>
+    <ul class="build">
+      <li>
+        <pre class="prettyprint" data-lang="html">
+&lt;a href=&quot;http://cs.uns.edu.ar&quot;&gt;Link a la p&#225;gina del departamento&lt;/a&gt;
+</pre>
+        <a href="http://cs.uns.edu.ar">Link a la página del departamento</a>
+      </li>
+      <li>
+        <pre class="prettyprint" data-lang="html">
+&lt;img src=&quot;images/logo-dcic.png&quot; alt=&quot;Logo DCIC&quot; width=&quot;124&quot; height=&quot;124&quot;&gt;</pre>
+        <img src="images/logo-dcic.png" alt="Logo DCIC" width="124" height="124">
+      </li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Listados</h2>
+  </hgroup>
+  <article>
+      <pre class="prettyprint" data-lang="html">
+&lt;ul title=&quot;Listado&quot;&gt;
+  &lt;li&gt;
+    item 1
+  &lt;/li&gt;
+  &lt;li&gt;
+    item 2
+  &lt;/li&gt;
+  &lt;li&gt;
+    item 3
+  &lt;/li&gt;
+&lt;/ul&gt;</pre>
+      <ul title="Listado">
+        <li>
+          item 1
+        </li>
+        <li>
+          item 2
+        </li>
+        <li>
+          item 3
+        </li>
+      </ul>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Tablas</h2>
+  </hgroup>
+  <article>
+      <pre class="prettyprint" data-lang="html">&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Ranking&lt;/th&gt;&lt;th&gt;Jugador&lt;/th&gt;&lt;th&gt;Puntos&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;&lt;td&gt;Kareem Abdul-Jabbar&lt;/td&gt;&lt;td&gt;38.387&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;&lt;td&gt;Karl Malone&lt;/td&gt;&lt;td&gt;36.928&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;&lt;td&gt;KOBE BRYANT&lt;/td&gt;&lt;td&gt;32.482&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Tablas</h2>
+  </hgroup>
+  <article>
+    <table>
+      <thead>
+        <tr>
+          <th>Ranking</th>
+          <th>Jugador</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Kareem Abdul-Jabbar</td>
+          <td>38.387</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Karl Malone</td>
+          <td>36.928</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>KOBE BRYANT</td>
+          <td>32.482</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+</slide>
+
+
+
+<slide>
+  <hgroup>
+    <h2>Selectores CSS</h2>
+  </hgroup>
+  <article>
+      <pre class="prettyprint" data-lang="css">
+/* por elemento */
+p {
+    text-align: center;
+    padding: 10px; 
+}
+/* por id */
+#nav {
+    text-align: center;
+    padding: 10px; 
+}
+/* por class */
+.center {
+    text-align: center;
+    padding: 10px; 
+}
+      </pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Como incorporar estilos CSS</h2>
+  </hgroup>
+  <article>
+      <pre class="prettyprint" data-lang="html">
+&lt;head&gt;
+  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;external.css&quot;&gt;
+
+  &lt;style&gt;
+    /* internal */
+    body {
+        background-color: linen;
+    }
+    h1 {
+        color: maroon;
+        margin-left: 40px;
+    } 
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1 style=&quot;color:blue; margin-left:30px;&quot;&gt;Inline&lt;/h1&gt;
+&lt;/body&gt;</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Layout con CSS</h2>
+  </hgroup>
+  <article>
+    <div id="header">
+      <h1>Título</h1>
+    </div>
+
+    <div id="nav">
+      <ol>
+        <li>Menu1</li>
+        <li>Menu2</li>
+        <li>Menu3</li>
+      </ol>
+    </div>
+
+    <div id="section">
+      <h1>Contenido 1</h1>
+    </div>
+
+    <div id="footer">
+      Pié de Página 
+    </div>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Layout con CSS</h2>
+  </hgroup>
+  <article>
+      <pre class="prettyprint" data-lang="html">
+&lt;div id=&quot;header&quot;&gt;
+  &lt;h1&gt;T&#237;tulo&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;nav&quot;&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Menu1&lt;/li&gt;
+    &lt;li&gt;Menu2&lt;/li&gt;
+    &lt;li&gt;Menu3&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;section&quot;&gt;
+  &lt;h1&gt;Contenido 1&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;footer&quot;&gt;
+  Pi&#233; de P&#225;gina 
+&lt;/div&gt;</pre>
+  </article>
+</slide>
+<slide>
+  <article>
+      <pre class="prettyprint" data-lang="css">
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;  background-color:#eeeeee;
+    height:300px; width:100px;
+    float:left;
+    padding:5px; 
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px; 
+}
+#footer {
+    background-color:black;  color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Layout con CSS y HTML5</h2>
+  </hgroup>
+  <article>
+      <pre class="prettyprint" data-lang="html">
+&lt;header&gt;
+  &lt;h1&gt;T&#237;tulo&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;nav&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Menu1&lt;/li&gt;
+    &lt;li&gt;Menu2&lt;/li&gt;
+    &lt;li&gt;Menu3&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+
+&lt;section&gt;
+  &lt;h1&gt;Contenido 1&lt;/h1&gt;
+&lt;/section&gt;
+
+&lt;footer&gt;
+  Pi&#233; de P&#225;gina 
+&lt;/footer&gt;</pre>
+  </article>
+</slide>
+
+<slide>
+  <article>
+  HTML5 ofrece nuevos elementos semánticos que definen diferentes partes de una página web:
+<table>
+<thead>
+  <tr>
+    <th>Tag</th>
+    <th>Descripción</th>
+  </tr>
+</thead>
+<tbody>
+<tr>
+  <td>header</td>
+  <td>Defines a header for a document or a section</td>
+</tr>
+<tr>
+  <td>nav</td>
+  <td>Defines a container for navigation links</td>
+</tr>
+<tr>
+  <td>section</td>
+  <td>Defines a section in a document</td>
+</tr>
+<tr>
+  <td>article</td>
+  <td>Defines an independent self-contained article </td>
+</tr>
+<tr>
+  <td>aside</td>
+  <td>Defines content aside from the content (like a sidebar)</td>
+</tr>
+<tr>
+  <td>footer</td>
+  <td>Defines a footer for a document or a section</td>
+</tr>
+<tr>
+  <td>details</td>
+  <td>Defines additional details</td>
+</tr>
+<tr>
+  <td>summary</td>
+  <td>Defines a heading for the details element</td>
+</tr>
+</tbody>
+</table>
+</article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Otros Ejemplos</h2>
+  </hgroup>
+  <article>
+    <ul>
+      <li><a href="http://iaw-dcic.github.io/html-css/layout1.html">Layout 1</a></li>
+      <li><a href="http://iaw-dcic.github.io/html-css/layout2.html">Layout 2</a></li>
+      <li><a href="http://iaw-dcic.github.io/html-css/layout3.html">Layout 3</a></li>
+      <li><a href="http://iaw-dcic.github.io/html-css/selectors.html">Selectores CSS</a></li>
+      <li><a href="http://www.w3schools.com/css/demo_default.htm">Múltiples estilos, un HTML</a></li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2></h2>
+  </hgroup>
+  <article>
+      <pre class="prettyprint" data-lang="html"></pre>
+  </article>
+</slide>
+

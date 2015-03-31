@@ -16,6 +16,7 @@ function SlideDeck(el) {
   this.container = el || document.querySelector('slides');
   this.slides = [];
   this.controller = null;
+  this.name = 'none';
 
   this.getCurrentSlideFromHash_();
 
@@ -35,19 +36,6 @@ SlideDeck.prototype.SLIDE_CLASSES_ = [
  * @private
  */
 SlideDeck.prototype.CSS_DIR_ = 'theme/css/';
-
-/**
- * @private
- */
-SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
-  var slideNo = parseInt(document.location.hash.substr(1));
-
-  if (slideNo) {
-    this.curSlide_ = slideNo - 1;
-  } else {
-    this.curSlide_ = 0;
-  }
-};
 
 /**
  * @param {number} slideNo
@@ -227,6 +215,10 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       // TODO: implement refresh on main slides when popup is refreshed.
       break;
 
+    case 83: // S show options
+      showOptions();
+      break;
+
     case 27: // ESC: Hide notes and highlighting
       document.body.classList.remove('with-notes');
       document.body.classList.remove('highlight-code');
@@ -316,6 +308,8 @@ SlideDeck.prototype.loadConfig_ = function(config) {
   if (!!!('useBuilds' in settings) || settings.useBuilds) {
     this.makeBuildLists_();
   }
+
+  this.name = settings.name;
 
   if (settings.title) {
     document.title = settings.title.replace(/<br\/?>/, ' ');
@@ -697,12 +691,26 @@ SlideDeck.prototype.makeBuildLists_ = function () {
 
 /**
  * @private
+ */
+SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
+  var hashObj = getHashObj(); 
+  var slideNo = parseInt(hashObj.slide);
+
+  if (slideNo) {
+    this.curSlide_ = slideNo - 1;
+  } else {
+    this.curSlide_ = 0;
+  }
+};
+
+/**
+ * @private
  * @param {boolean} dontPush
  */
 SlideDeck.prototype.updateHash_ = function(dontPush) {
   if (!dontPush) {
     var slideNo = this.curSlide_ + 1;
-    var hash = '#' + slideNo;
+    var hash = createHashString(this.name, slideNo);
     if (window.history.pushState) {
       window.history.pushState(this.curSlide_, 'Slide ' + slideNo, hash);
     } else {
@@ -767,17 +775,3 @@ SlideDeck.prototype.loadAnalytics_ = function() {
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 };
-
-
-// Polyfill missing APIs (if we need to), then create the slide deck.
-// iOS < 5 needs classList, dataset, and window.matchMedia. Modernizr contains
-// the last one.
-(function() {
-  Modernizr.load({
-    test: !!document.body.classList && !!document.body.dataset,
-    nope: ['js/polyfills/classList.min.js', 'js/polyfills/dataset.min.js'],
-    complete: function() {
-      window.slidedeck = new SlideDeck();
-    }
-  });
-})();
