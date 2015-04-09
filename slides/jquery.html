@@ -1,0 +1,267 @@
+<script>
+var SLIDE_CONFIG = {
+  // Slide settings
+  settings: {
+    name: 'jquery',
+    title: 'Introducción a jQuery',
+   eventInfo: {
+     title: 'Clase Práctica 4',
+     date: '09/04/2015'
+   },
+    useBuilds: true, // Default: true. False will turn off slide animation builds.
+    usePrettify: true, // Default: true
+    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
+    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
+    //analytics: 'UA-XXXXXXXX-1', // TODO: Using this breaks GA for some reason (probably requirejs). Update your tracking code in template.html instead.
+    favIcon: 'images/logo-dcic.png',
+    fonts: [
+      'Open Sans:regular,semibold,italic,italicsemibold',
+      'Source Code Pro'
+    ],
+    //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
+  },
+
+  // Author information
+  presenters: [{
+    name: 'Mariano Tucat',
+    company: 'DCIC - Universidad Nacional del Sur',
+    gplus: 'https://www.google.com/+MarianoTucat',
+    twitter: '@eltucky',
+    www: 'http://cs.uns.edu.ar/~mt/',
+    github: 'http://github.com/MarianoTucat'
+  }]
+};
+</script>
+  <slide>
+    <hgroup>
+      <h2>¿Qué es jQuery?</h2>
+    </hgroup>
+    <article class="bigger">
+        <p>Es una librería para Javascript concisa y eficiente, que tiene como principales objetivos simplificar:</p>
+      <ul class="build">
+        <li>El acceso a los elementos del documento HTML.</li>
+        <li>El manejo de eventos,</li>
+        <li>Las animaciones y los efectos,</li>
+        <li>Las interacciones AJAX.</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Características Principales</h2>
+    </hgroup>
+    <article class="bigger">
+        <ul class="build">
+            <li class="build">Selectores
+                <ul>Elimina la necesidad de getElementById()</ul>
+            </li>
+            <li>Operaciones sobre conjuntos de elementos.</li>
+            <li>Eventos.</li>
+            <li>Extensible a través de Plugins.</li>
+        </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Selectores</h2>
+    </hgroup>
+    <article>
+        <pre class="prettyprint" data-lang="javascript">
+$(".tabla") // por clase de CSS
+$("#titulo") // por ID
+$("ul") // por nombre de tag
+$("ul li") // elemento descendiente
+$("ul").find("li") // más elementos desc.
+$("li", lista) // dentro de otros elementos
+$("ul > li") //elemento hijo (desc. directo)
+$("input:checkbox") // filtrar
+$("a[href=#Home]") // atributos
+$("a[href$=.jpg]") // atributos que terminan en</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Conjuntos de Elementos</h2>
+    </hgroup>
+    <article>
+        <ul class="build">
+            <li>Cada selector devuelve un conjunto de elementos (un objeto que actúa como un arreglo).</li>
+            <li>La sentencia: </li>
+            <pre class="prettyprint" data-lang="javascript">$(".tabla td").css("background","red");</pre>
+            <li>Modifica el fondo de todos los elementos devueltos por el selector.</li>
+        </ul>
+    </article>
+  </slide>
+    
+  <slide>
+    <hgroup>
+      <h2>Conjuntos de Elementos</h2>
+    </hgroup>
+    <article>
+        <ul class="build">
+            <li>Posibles operaciones:
+            <ul class="build">
+              <li>.html() .text() .val() .attr() .append() .empty()</li>
+              <li>.css() .addClass() .removeClass() .hasClass() .offset() .height() .width() .scrollTop() .scrollLeft() .show() .hide()</li>
+              <li>.find() .is() .has() .not() .filter() .parent() .closest() .next()</li>
+              <li>.live() .bind() .click() .dblclick() .hover() .toggle() .blur() .keydown() .keyup() .resize() .mouseover() .mousedown()</li>
+            </ul>
+            </li>
+            <li>Encadenando Operaciones</li>
+            <pre class="prettyprint" data-lang="javascript">$("th").css("cursor","pointer").click(headerClicked);</pre>
+        </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Eventos</h2>
+    </hgroup>
+    <article>
+        <ul class="build">
+            <li>Es posible asociar eventos facilmente desde el script.</li>
+            <li>Evita agregar los atributos de eventos en el documento HTML, mejorando la reutilización y la claridad del código.</li>
+            <pre class="prettyprint" data-lang="javascript">$(document).ready(function() {  
+  $("#myLink").click(function(e) { 
+    e.preventDefault();
+    $(".myDiv").show();
+  });
+});</pre>
+        </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Eventos y Callbacks</h2>
+    </hgroup>
+    <article>
+        <ul class="build">
+<pre class="prettyprint" data-lang="javascript anonima">$("#myLink").click(function(e) { 
+  $(".myDiv").show();
+});</pre>
+<pre class="prettyprint" data-lang="javascript no anonima">$("#myLink").click(myLinkClick);
+
+function myLinkClick(e) { 
+  $(".myDiv").show();
+});</pre>
+<pre class="prettyprint" data-lang="javascript">$("#myLink").toggle(function(e) { 
+  $(this).addClass("selected");
+}, function(e) { 
+  $(this).removeClass("selected");
+});</pre>
+        </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Ejemplo</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+  <hgroup>
+    <h2>jQuery UI</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>El proyecto jQuery UI provee:</p>
+    <ul>
+      <li>widgets,</li>
+      <li>plugins de interacción y </li>
+      <li>efectos de animación.</li>
+    </ul>
+    <p>Es una extensión de jQuery implementada por sobre esta librería.</p>
+  </article>
+</slide>
+
+  <slide>
+  <hgroup>
+    <h2>jQuery UI - Widgets</h2>
+  </hgroup>
+  <article>
+    <ul>
+      <li><a href="https://jqueryui.com/accordion/">Accordion</a></li>
+      <li><a href="https://jqueryui.com/autocomplete/">Autocomplete</a></li>
+      <li><a href="https://jqueryui.com/button/">Button</a></li>
+      <li><a href="https://jqueryui.com/datepicker/">Datepicker</a></li>
+      <li><a href="https://jqueryui.com/dialog/">Dialog</a></li>
+      <li><a href="https://jqueryui.com/menu/">Menu</a></li>
+      <li><a href="https://jqueryui.com/progressbar/">Progressbar</a></li>
+      <li><a href="https://jqueryui.com/slider/">Slider</a></li>
+      <li><a href="https://jqueryui.com/tabs/">Tabs</a></li>
+      <li><a href="https://jqueryui.com/tooltip/">Tooltip</a></li>
+    </ul>
+  </article>
+  </slide>
+
+<slide>
+  <hgroup>
+    <h2>jQuery UI - Interacción</h2>
+  </hgroup>
+  <article class="bigger">
+    <ul>
+      <li><a href="https://jqueryui.com/draggable/">Draggable</a></li>
+      <li><a href="https://jqueryui.com/droppable/">Droppable</a></li>
+      <li><a href="https://jqueryui.com/resizable/">Resizable</a></li>
+      <li><a href="https://jqueryui.com/selectable/">Selectable</a></li>
+      <li><a href="https://jqueryui.com/sortable/">Sortable</a></li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>jQuery UI - Efectos</h2>
+  </hgroup>
+  <article>
+    <ul class="build">
+      <li>Visibilidad
+        <ul><a href="http://jqueryui.com/show/">Show</a></ul>
+        <ul><a href="http://jqueryui.com/hide/">Hide</a></ul>
+        <ul><a href="http://jqueryui.com/toggle/">Toggle</a></ul>
+      </li>
+      <li><a href="http://jqueryui.com/effect/">Efectos</a>
+        <ul>Blind, Bounce, Clip, Drop, Explode, Fade, Fold Highlight, Puff, Pulstate, Scale, Shake, Size, Slide, Transfer</ul>
+      </li>
+      <li>Transiciones de Clases
+        <ul><a href="http://jqueryui.com/addClass/">Add Class</a></ul>
+        <ul><a href="http://jqueryui.com/removeClass/">Remove Class</a></ul>
+        <ul><a href="http://jqueryui.com/toggleClass/">Toggle Class</a></ul>
+        <ul><a href="http://jqueryui.com/switchClass/">Switch Class</a></ul>
+      </li>
+    </ul>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Utilizando jQuery</h2>
+  </hgroup>
+  <article class="bigger">
+    <ul class="build">
+      <li>Descargar la última versión de jQuery (actualmente 2.1.3).</li>
+      <li>Incluirla en el documento HTML:</li>
+      <pre class="prettyprint" data-lang="javascript">&lt;script language=&quot;javascript&quot; src=&quot;jquery-2.1.3.min.js&quot;&gt;&lt;/script&gt;</pre>
+      <li>Si se desea utilizar jQuery UI, hay que descargar los archivos correspondientes e incluirlos de manera similar.</li>
+      <li>Otra posibilidad es utilizar directamente los servidores de jQuery para incluirlo:</li>
+      <pre class="prettyprint" data-lang="javascript">&lt;script language=&quot;javascript&quot; 
+      src=&quot;https://code.jquery.com/jquery-2.1.3.min.js&quot;&gt;&lt;/script&gt;</pre>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Referencias</h2>
+  </hgroup>
+  <article class="bigger">
+    <ul>
+      <li><a href="https://jquery.com/">jQuery</a></li>
+      <li><a href="http://api.jquery.com/">jQuery API</a></li>
+      <li><a href="http://jqueryui.com/">jQuery UI</a></li>
+    </ul>
+  </article>
+</slide>
