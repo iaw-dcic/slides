@@ -1,0 +1,346 @@
+<script>
+var SLIDE_CONFIG = {
+  // Slide settings
+  settings: {
+    name: 'angular',
+    title: 'Introducción a AngularJS',
+   eventInfo: {
+     title: 'Clase Práctica 5',
+     date: '21/05/2015'
+   },
+    useBuilds: true, // Default: true. False will turn off slide animation builds.
+    usePrettify: true, // Default: true
+    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
+    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
+    //analytics: 'UA-XXXXXXXX-1', // TODO: Using this breaks GA for some reason (probably requirejs). Update your tracking code in template.html instead.
+    favIcon: 'images/logo-dcic.png',
+    fonts: [
+      'Open Sans:regular,semibold,italic,italicsemibold',
+      'Source Code Pro'
+    ],
+    //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
+  },
+
+  // Author information
+  presenters: [{
+    name: 'Mariano Tucat',
+    company: 'DCIC - Universidad Nacional del Sur',
+    gplus: 'https://www.google.com/+MarianoTucat',
+    twitter: '@eltucky',
+    www: 'http://cs.uns.edu.ar/~mt/',
+    github: 'http://github.com/MarianoTucat'
+  }]
+};
+</script>
+
+<slide>
+  <hgroup>
+    <h2>¿Qué es AngularJS?</h2>
+  </hgroup>
+  <article class="bigger">
+    <p>AngularJS es un framework estructural para la aplicaciones web dinámicas.</p>
+    <p>Permite utilizar HTML para construir templates y extender la sintaxis para expresar componentes específicos de manera clara y concisa.</p>
+    <p>Además, permite el enlace de datos y la inyección de dependencias, eliminando la necesidad de escribir código repetitivo.</p>
+    <p>Todo ocurre en el navegador, permitiendo cualquier tecnologia del lado del servidor.</p>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Construcciones HTML</h2>
+  </hgroup>
+  <article class="bigger">
+    <p>Angular permite nuevas construcciones utilizando <i>directivas</i>:</p>
+    <ul class="build">
+      <li>Vinculación de datos,</li>
+      <li>Estructuras de control para DOM, para repetir, mostra y ocultar fragmentos del DOM,</li>
+      <li>Soporte para formularios y validación,</li>
+      <li>Agregar nuevo comportamiento a elementos del DOM, como manejo de eventos,</li>
+      <li>Agrupar HTML en componentes reutilizables.</li>
+    </ul>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Concepto General</h2>
+  </hgroup>
+  <article>
+        <pre class="prettyprint" data-lang="javascript">&lt;div ng-app&gt;
+  &lt;div ng-init=&quot;cant=1;costo=2&quot;&gt;
+    &lt;div&gt; Cantidad: &lt;input type=&quot;number&quot; min=&quot;0&quot; ng-model=&quot;cant&quot;&gt;&lt;/div&gt;
+    &lt;div&gt; Costo: &lt;input type=&quot;number&quot; min=&quot;0&quot; ng-model=&quot;costo&quot;&gt; &lt;/div&gt;
+    &lt;div&gt; &lt;b&gt;Total:&lt;/b&gt; {{cant * costo | currency}} &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<div ng-app style="text-align: center;">
+  <div ng-init="cant=1;costo=2">
+    <div> Cantidad: <input type="number" min="0" ng-model="cant"></div>
+    <div> Costo: <input type="number" min="0" ng-model="costo"> </div>
+    <div> <b>Total:</b> {{cant * costo | currency}} </div>
+  </div>
+</div>
+
+    <ul class="build">
+      <li>Plantilla,</li>
+      <li>Compilador,</li>
+      <li>Vista,</li>
+      <li>Directivas,</li>
+      <li>Expresiones.</li>
+    </ul>
+
+
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Modelo - Vista</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="600px" src="images/databinding.png" alt="Vinculación Dinámica" title="Vinculación Dinámica">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Directivas</h2>
+  </hgroup>
+  <article class="bigger">
+    <p>Son marcas en los elementos del DOM que le indica a AngularJS que le tiene que agregar un comportamiento específico.</p>
+    <p>Ejemplos: ng-app, ng-model, ng-bind</p>
+    <p>Cuando se inicia la aplicación, un compilador busca las directivas y las procesa, para lograr el comportamiento deseado.</p>
+    <p>Se pueden crear directivas propias.</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Expresiones</h2>
+  </hgroup>
+  <article>
+    <p>Son fragmentos de código JavaScript que se colocan generalmente con el siguiente formato: {{expresión}}.</p>
+    <p>Por ejemplo:</p>
+      <ul>
+        <li>1+2</li>
+        <li>a+b</li>
+        <li>user.name</li>
+        <li>items[index]</li>
+      </ul>
+    <pre class="prettyprint" data-lang="javascript">
+&lt;span&gt;
+  1+2={{1+2}}
+&lt;/span&gt;</pre>
+</article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Filtros</h2>
+  </hgroup>
+  <article>
+    <p>Los filtros pueden aplicarse a las expresiones en plantillas de vista con la siguiente sintaxis:</p>
+    <pre class="prettyprint" data-lang="angular">{{ expresion | filtro }}</pre>
+    <p>También pueden encadenarse: </p>
+    <pre class="prettyprint" data-lang="angular">{{ expresion | filtro1 | filtro2 }}</pre>
+    <p>y pueden tener argumentos: </p>
+    <pre class="prettyprint" data-lang="angular">{{ expresion | filtro:argumento1:argumento2 }}</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Vista</h2>
+  </hgroup>
+  <article>
+<pre class="prettyprint" data-lang="angular">&lt;div ng-controller=&quot;PedidoPizzas as pedido&quot;&gt;
+    &lt;div&gt;
+        &lt;input class=&quot;filtro&quot; type=&quot;text&quot; data-ng-model=&quot;inputNombre&quot;/&gt;
+        &lt;span class=&quot;total&quot;&gt;Total: &lt;span&gt;{{pedido.total() | currency}}&lt;/span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;table&gt;
+        &lt;tbody&gt;
+          &lt;tr ng-repeat=&quot;pizza in pedido.pizzas | orderBy:&#39;tipo&#39; | filter:inputNombre&quot;&gt;
+            &lt;td&gt;
+                &lt;img ng-click=&quot;pedido.add(pizza)&quot; src=&quot;images/plus.svg&quot; class=&quot;svgicon&quot;/&gt;
+                &lt;input ng-model=&quot;pizza.cantidad&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;15&quot;&gt;
+                &lt;img ng-click=&quot;pedido.remove(pizza)&quot; src=&quot;images/minus.svg&quot; class=&quot;svgicon&quot;/&gt;
+            &lt;/td&gt;
+            &lt;td&gt;{{pizza.nombre}}&lt;/td&gt;
+            &lt;td&gt;{{pizza.tipo}}&lt;/td&gt;
+            &lt;td&gt;{{pizza.precio | currency}}&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;</pre>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Controladores</h2>
+  </hgroup>
+  <article class="build">
+    <p>Los controladores proporcionan la lógica de negocios de la aplicación.</p>
+    <p>Un controlador es una objecto javascript que tiene un alcance (scope), el cual será utilizado para comunicarse con la vista</p>
+<p>Usar Controladores para:
+<ul>
+<li>Inicializar el alcance (scope)</li>
+<li>agregar comportamiento para el alcance (scope)</li>
+</ul>
+</p>
+
+<p>No usarlos para:
+<ul>
+<li>Manipular DOM (usar databinding y directivas)</li>
+<li>Formatear entrada (usar controles de formularios)</li>
+<li>Filtrar salida (usar filtros)</li>
+<li>Compartir código (usar servicios)</li>
+</ul>
+</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Controladores</h2>
+  </hgroup>
+  <article >
+    <pre class="prettyprint" data-lang="angular">var controladorPedido = angular.module(&#39;controladorPedido&#39;, []);
+
+controladorPedido.controller(&#39;PedidoPizzas&#39;, function() {
+  var pedido = this;
+  pedido.pizzas = [];
+  angular.forEach(jsonPizzas, function(pizza) {
+    pizzaEnPedido = jQuery.extend({}, pizza);
+    pizzaEnPedido.cantidad = 0;
+    pedido.pizzas.push(pizzaEnPedido);
+  });
+
+  pedido.total = function() {
+    var total = 0;
+    angular.forEach(pedido.pizzas, function(pizza) {
+      total += pizza.cantidad * pizza.precio;
+    });
+    return total;
+  };
+});</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Servicios</h2>
+  </hgroup>
+  <article class="build">
+
+<p>La lógica de negocios de vistas independientes no tiene que estar en un controlador. Dicha lógica debe estar en un <b>servicio</b>.</p>
+
+<p>Los controladores son específicos de una vista, mientras que los servicios son específicos de una aplicación.</p>
+
+<p>Los controladores son responsables de vincular el modelo a la vista. Los modelos puede ser obtenidos de un servicio.</p>
+
+<p>Los controladores no son responsables de manipular (crear, destruir, actualizar) los datos. En cambio, los servicios son los responsables.</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Servicios</h2>
+  </hgroup>
+  <article>
+<pre class="prettyprint" data-lang="angular">var miApp = angular.module(&#39;miApp&#39;, []);
+
+miApp.controller(&#39;ViewCtrl&#39;, function($scope, servicio) {
+  $scope.datos = servicio.datos;
+});
+
+miApp.controller(&#39;ModifyCtrl&#39;, function($scope, servicio) {
+  $scope.datos = servicio.datos;
+});
+
+miApp.factory(&#39;servicio&#39;, function() {
+  var factory = {};
+  factory.datos = [{nombre: &#39;Mariano&#39;}, {nombre: &#39;Fernando&#39;}, {nombre: &#39;Diego&#39;}];
+  return factory;
+});</pre>
+
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Modulos</h2>
+  </hgroup>
+  <article>
+    <p>Se puede pensar en un módulo como un contenedor para las diferentes partes de su aplicación - controladores, servicios, filtros, directivas, etc.
+    </p>
+    <p>Angula no tiene un método principal donde todo se inicializa. Los módulos proveen una forma declarativa de especificar como una aplicación debe inicializarse.</p>
+
+    <pre class="prettyprint" data-lang="angular">  var miApp = angular.module(&#39;miApp&#39;, []);
+
+  miApp.filter(&#39;bienvenido&#39;, function() {
+    return function(nombre) {
+      return &#39;Hola, &#39; + nombre + &#39;!&#39;;
+    }
+
+  });&#39;</pre>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Rutas</h2>
+  </hgroup>
+  <article>
+   <p>Todo ocurre en una única página. ¿Qué hace el botón atras?</p>
+
+  <pre class="prettyprint" data-lang="angular">var pizzasApp = angular.module(&#39;pizzasApp&#39;, [&#39;ngRoute&#39;, &#39;controladorPedido&#39;]);
+
+pizzasApp.config([&#39;$routeProvider&#39;,
+  function($routeProvider) {
+    $routeProvider.
+      when(&#39;/pedido&#39;, {
+        templateUrl: &#39;views/pedido.html&#39;,
+        controller: &#39;PedidoPizzas&#39;
+      }).
+      otherwise({
+        redirectTo: &#39;/pedido&#39;
+      });
+  }]);
+</pre>
+
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Conclusión</h2>
+  </hgroup>
+  <article>
+  <p>AngularJS es un framework modular de javascript para desarrollar lo que se denomina SPA (Single Page Applications)</p>
+<p>Tiene muchas característias interesantes:
+<ul class="build">
+<li>Desacopla la manipulación DOM de aplicación lógica. Esto mejora dramáticamente la capacidad de prueba del código.</li>
+
+<li>Desacopla el lado del cliente de una aplicación desde el lado del servidor. Esto permite que el trabajo de desarrollo para avanzar en paralelo, y permite la reutilización de ambos lados.</li>
+
+<li>Facilita el testing de la aplicación. </li>
+
+<li>Permite ser utilizado con otras librerías de JS (como jQuery)</li>
+
+</ul>
+</p>
+  </article>
+</slide>
+
+
+
