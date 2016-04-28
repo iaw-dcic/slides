@@ -1,0 +1,689 @@
+<script>
+var SLIDE_CONFIG = {
+  // Slide settings
+  settings: {
+    name: 'html5',
+    title: 'HTML 5',
+    subtitle: 'Ejemplos',
+   eventInfo: {
+     title: 'Clase Práctica 4',
+     date: '28/04/2016'
+   },
+    useBuilds: true, // Default: true. False will turn off slide animation builds.
+    usePrettify: true, // Default: true
+    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
+    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
+    //analytics: 'UA-XXXXXXXX-1', // TODO: Using this breaks GA for some reason (probably requirejs). Update your tracking code in template.html instead.
+    favIcon: 'images/logo-dcic.png',
+    fonts: [
+      'Open Sans:regular,semibold,italic,italicsemibold',
+      'Source Code Pro'
+    ],
+    //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
+  },
+
+  // Author information
+  presenters: [{
+    name: 'Mariano Tucat',
+    company: 'DCIC - Universidad Nacional del Sur',
+    gplus: 'https://www.google.com/+MarianoTucat',
+    twitter: '@eltucky',
+    www: 'http://cs.uns.edu.ar/~mt/',
+    github: 'http://github.com/MarianoTucat'
+  }]
+};
+</script>
+<slide>
+  <hgroup>
+    <h2>Doctype</h2>
+  </hgroup>
+  <article>
+      <ul class="build">
+        <li>La declaración de tipo de documento (DOCTYPE) para HTML5 es:</li>
+        <li>
+          <pre class="prettyprint" data-lang="html5">
+
+&lt;!DOCTYPE html&gt;
+        </li>
+        <li>La declaración del tipo de codificación de los caracteres se puede realizar de la siguiente manera:</li>
+        <li>
+          <pre class="prettyprint" data-lang="html5">
+
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+
+
+</pre>
+        </li>
+      </ul>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Elementos nuevos en HTML5</h2>
+  </hgroup>
+  <article>
+  <p>Los más interesantes son:</p>
+    <ul class="build" ><!-- --> 
+      <li>elementos semánticos como &lt;header&gt;, &lt;footer&gt;, &lt;article&gt;, and &lt;section&gt;</li>
+      <li>atributos para input como <b>number</b>, <b>date</b>, <b>time</b>, <b>calendar</b>, y <b>range</b>.</li>
+      <li>elementos gráficos: &lt;svg&gt; y &lt;canvas&gt;.</li>
+      <li>elementos multimedia: &lt;audio&gt; y &lt;video&gt;.</li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Nuevas API en HTML5</h2>
+  </hgroup>
+  <article>
+    <p>Las más interesantes son:</p>
+    <ul ><!-- class="build" -->
+      <li>HTML Geolocation</li>
+      <li>HTML Drag and Drop</li>
+      <li>HTML Local Storage</li>
+      <li>HTML Application Cache</li>
+      <li>HTML Web Workers</li>
+      <li>HTML SSE</li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Elementos Semánticos</h2>
+  </hgroup>
+  <article>
+<table>
+<thead>
+  <tr>
+    <th>Tag</th>
+    <th>Descripción</th>
+  </tr>
+</thead>
+<tbody>
+<tr>
+  <td>header</td>
+  <td>Defines a header for a document or a section</td>
+</tr>
+<tr>
+  <td>nav</td>
+  <td>Defines a container for navigation links</td>
+</tr>
+<tr>
+  <td>section</td>
+  <td>Defines a section in a document</td>
+</tr>
+<tr>
+  <td>article</td>
+  <td>Defines an independent self-contained article </td>
+</tr>
+<tr>
+  <td>aside</td>
+  <td>Defines content aside from the content (like a sidebar)</td>
+</tr>
+<tr>
+  <td>footer</td>
+  <td>Defines a footer for a document or a section</td>
+</tr>
+<tr>
+  <td>details</td>
+  <td>Defines additional details</td>
+</tr>
+<tr>
+  <td>summary</td>
+  <td>Defines a heading for the details element</td>
+</tr>
+</tbody>
+</table>
+</article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Elementos para Formularios</h2>
+  </hgroup>
+  <article>
+<table>
+<thead>
+  <tr>
+    <th>Tag</th>
+    <th>Descripción</th>
+  </tr>
+</thead>
+<tbody>
+<tr>
+  <td>datalist</td>
+  <td>Defines pre-defined options for input controls</td>
+</tr>
+<tr>
+  <td>keygen</td>
+  <td>Defines a key-pair generator field (for forms)</td>
+</tr>
+<tr>
+  <td>output</td>
+  <td>Defines the result of a calculation</td>
+</tr>
+</tbody>
+</table>
+<br>
+
+<pre class="prettyprint" data-lang="html5" style="width: 600px; float: right;">
+&lt;form action=&quot;.&quot;&gt;
+  &lt;input list=&quot;browsers&quot;&gt;
+  &lt;datalist id=&quot;browsers&quot;&gt;
+    &lt;option value=&quot;Internet Explorer&quot;&gt;
+    &lt;option value=&quot;Firefox&quot;&gt;
+    ...
+  &lt;/datalist&gt; 
+&lt;/form&gt;
+</pre>
+<p>Ingrese su Navegador:<form action=".">
+  <input list="browsers">
+  <datalist id="browsers">
+    <option value="Internet Explorer">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist> 
+</form>
+</article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Nuevos tipos de campos de entrada</h2>
+  </hgroup>
+  <article>
+  <table>
+<tbody><tr>
+<th>Tipos de Input Nuevos</th>
+<th>Atributos de Input Nuevos</th>
+</tr>
+<tr>
+<td>
+<ul>
+  <li>color</li>
+  <li>date</li>
+  <li>datetime</li>
+  <li>datetime-local</li>
+  <li>email</li>
+  <li>month</li>
+  <li>number</li>
+  <li>range</li>
+  <li>search</li>
+  <li>tel</li>
+  <li>time</li>
+  <li>url</li>
+  <li>week</li>
+</ul>
+</td>
+<td style="padding-bottom: 0;">
+<ul style="margin-bottom: 0;">
+  <li>autocomplete</li>
+  <li>autofocus</li>
+  <li>form</li>
+  <li>formaction</li>
+  <li>formenctype</li>
+  <li>formmethod</li>
+  <li>formnovalidate</li>
+  <li>formtarget</li>
+  <li>height and width</li>
+  <li>list</li>
+  <li>min and max</li>
+  <li>multiple</li>
+  <li>pattern (regexp)</li>
+  <li>placeholder</li>
+  <li>required</li>
+  <li>step</li></ul></td></tr></tbody></table>
+
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Nuevos tipos de campos de entrada</h2>
+  </hgroup>
+  <article id='html5input'>
+  <style type="text/css">
+    #html5input input {position: absolute; left: 300px;}
+    #html5input div {margin-bottom: 5px;}
+  </style>
+<div>color<input type="color"></input></div>
+<div>date<input type="date"></input></div>
+<div>datetime<input type="datetime"></input></div>
+<div>datetime-local<input type="datetime-local"></input></div>
+<div>email<input type="email"></input></div>
+<div>month<input type="month"></input></div>
+<div>number<input type="number"></input></div>
+<div>range<input type="range" min="1" max="10"></input></div>
+<div>search<input type="search"></input></div>
+<div>tel<input type="tel"></input></div>
+<div>time<input type="time"></input></div>
+<div>url<input type="url"></input></div>
+<div>week<input type="week"></input></div>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Elementos Gráficos</h2>
+  </hgroup>
+  <article>
+    <table>
+<tbody><tr>
+<th>Tag</th>
+<th>Descripción</th>
+</tr>
+<tr>
+<td>&lt;canvas&gt;</td>
+<td>Defines graphic drawing using JavaScript</td>
+</tr>
+<tr>
+<td>&lt;svg&gt;</td>
+<td>Defines graphic drawing using SVG</td>
+</tr>
+</tbody></table>
+
+<br>
+
+<!-- <pre class="prettyprint" data-lang="html5" style="width: 700px; float: right;">
+&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot; style=&quot;border:1px solid #d3d3d3;&quot;&gt;
+Your browser does not support the HTML5 canvas tag.
+&lt;/canvas&gt;</pre>
+ -->
+<pre class="prettyprint" data-lang="js" style="width: 700px; float: right;">
+var c = document.getElementById(&quot;myCanvas&quot;);
+var ctx = c.getContext(&quot;2d&quot;);
+ctx.beginPath();
+ctx.arc(100,50,40,0,2*Math.PI);
+ctx.stroke();</pre>
+
+<div>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,50,40,0,2*Math.PI);
+ctx.stroke();
+</script> 
+</div>
+
+<br>
+<br>
+<br>
+<pre class="prettyprint" data-lang="html5" style="width: 700px; float: right;">
+&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;
+  &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot;
+  stroke=&quot;green&quot; stroke-width=&quot;4&quot; fill=&quot;yellow&quot; /&gt;
+&lt;/svg&gt;</pre>
+
+<div style="width: 200px; text-align: center; border: 1px solid #d3d3d3;" >
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40"
+  stroke="green" stroke-width="4" fill="yellow" />
+Sorry, your browser does not support inline SVG.
+</svg>
+</div>
+
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Elementos Multimedia</h2>
+  </hgroup>
+  <article>
+<table>
+<tbody><tr>
+<th>Tag</th>
+<th>Descripción</th>
+</tr>
+<tr>
+<td>&lt;audio&gt;</td>
+<td>Defines sound or music content</td>
+</tr>
+<tr>
+<td>&lt;embed&gt;</td>
+<td>Defines containers for external applications (like plug-ins)</td>
+</tr>
+<tr>
+<td>&lt;source&gt;</td>
+<td>Defines sources for &lt;video&gt; and &lt;audio&gt;</td>
+</tr>
+<tr>
+<td>&lt;track&gt;</td>
+<td>Defines tracks for &lt;video&gt; and &lt;audio&gt;</td>
+</tr>
+<tr>
+<td>&lt;video&gt;</td>
+<td>Defines video or movie content</td>
+</tr>
+</tbody></table>
+
+
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Elementos Multimedia</h2>
+  </hgroup>
+  <article>
+<pre class="prettyprint" data-lang="html5">
+&lt;video width=&quot;400&quot; controls&gt;
+  &lt;source src=&quot;mov_bbb.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;mov_bbb.ogg&quot; type=&quot;video/ogg&quot;&gt;
+  Your browser does not support HTML5 video.
+&lt;/video&gt;
+</pre>
+    <video width="400" controls>
+      <source src="videos/mov_bbb.mp4" type="video/mp4">
+      <source src="videos/mov_bbb.ogg" type="video/ogg">
+      Your browser does not support HTML5 video.
+    </video>
+<p>
+Video courtesy of 
+<a href="http://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.
+</p>
+
+  </article>
+</slide>
+
+
+
+
+<slide>
+  <hgroup>
+    <h2>Layout con CSS y HTML5</h2>
+  </hgroup>
+  <article>
+  <iframe width="400px" height="400px" style="float: right; width: 700px; height: 460px;" src="http://iaw-dcic.github.io/html-css/layout3.html"></iframe>
+
+      <pre class="prettyprint" data-lang="html5" style="width: 330px;">
+&lt;header&gt;
+  &lt;h1&gt;Layout 3&lt;/h1&gt;
+&lt;/header&gt;
+&lt;nav&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Menu1&lt;/li&gt;
+    &lt;li&gt;Menu2&lt;/li&gt;
+    &lt;li&gt;Menu3&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+&lt;section&gt;
+  &lt;h1&gt;Contenido 1&lt;/h1&gt;
+&lt;/section&gt;
+&lt;footer&gt;
+  Pi&#233; de P&#225;gina 
+&lt;/footer&gt;</pre>
+
+  </article>
+</slide>
+
+
+
+<slide>
+  <hgroup>
+    <h2>Localización</h2>
+  </hgroup>
+  <article>
+
+<pre class="prettyprint" data-lang="js">
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}</pre>
+
+<button onclick="getLocation()">Resolver ubicación</button>
+<span id="mapholder" style="position: absolute; right: 200px;"></span>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+    var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="
+    +latlon+"&zoom=16&size=400x300&sensor=false";
+    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+</script>
+  </article>
+</slide>
+
+
+
+<slide>
+  <hgroup>
+    <h2>Drag and Drop</h2>
+  </hgroup>
+  <article>
+<style>
+#div1 {width:150px;height:150px;padding:10px;border:1px solid #aaaaaa;display: inline-block; float: right;}
+#drag1 {float: right;}
+</style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<img id="drag1" src="images/logo-dcic.png" draggable="true" ondragstart="drag(event)" width="150">
+
+<pre class="prettyprint" data-lang="js" style="width: 700px">
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+function drag(ev) {
+    ev.dataTransfer.setData(&quot;text&quot;, ev.target.id);
+}
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData(&quot;text&quot;);
+    ev.target.appendChild(document.getElementById(data));
+}</pre>
+<pre class="prettyprint" data-lang="html5">&lt;div id=&quot;div1&quot; ondrop=&quot;drop(event)&quot; ondragover=&quot;allowDrop(event)&quot;&gt;&lt;/div&gt;
+&lt;img id=&quot;drag1&quot; src=&quot;images/logo-dcic.png&quot; draggable=&quot;true&quot; ondragstart=&quot;drag(event)&quot; 
+width=&quot;200&quot;&gt;
+</pre>
+
+
+  </article>
+</slide>
+
+
+
+<slide>
+  <hgroup>
+    <h2>Local Storage</h2>
+  </hgroup>
+  <article>
+
+<pre class="prettyprint" data-lang="js">
+if (localStorage.hits) {
+  localStorage.hits = Number(localStorage.hits) + 1;
+} else {
+  localStorage.hits = 1;
+}
+document.getElementById(&quot;accesos&quot;).innerHTML = localStorage.hits;
+</pre>
+<p>Cantidad de Ingresos locales a esta página: <span id='accesos'></span></p>
+<script type="text/javascript">
+   if( localStorage.hits ){
+      localStorage.hits = Number(localStorage.hits) + 1;
+   } else {
+      localStorage.hits = 1;
+   }
+   document.getElementById("accesos").innerHTML = localStorage.hits;
+</script>
+
+
+  </article>
+</slide>
+
+
+
+<slide>
+  <hgroup>
+    <h2>Web Workers</h2>
+  </hgroup>
+  <article>
+
+  <div style=" display: inline-block; width: 240px; float: right;">
+  <p>Cuenta: <output id="workerresult"></output></p>
+  <button onclick="startWorker()">Iniciar</button> 
+  <button onclick="stopWorker()">Frenar</button>
+</div>
+
+<pre class="prettyprint" data-lang="js" style="width: 780px;">
+var w;
+function startWorker() {
+  if(typeof(Worker) !== &quot;undefined&quot;) {
+    if(typeof(w) == &quot;undefined&quot;) {
+      w = new Worker(&quot;worker.js&quot;);
+    }
+    w.onmessage = function(event) {
+      document.getElementById(&quot;result&quot;).innerHTML = event.data;
+    };
+  } else {
+    document.getElementById(&quot;result&quot;).innerHTML = 
+    &quot;Sorry, your browser does not support Web Workers...&quot;;
+  }
+}
+function stopWorker() { 
+  w.terminate();
+  w = undefined;
+}
+</pre>
+
+
+<script>
+var w;
+
+function startWorker() {
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(w) == "undefined") {
+            w = new Worker("js/worker.js");
+        }
+        w.onmessage = function(event) {
+            document.getElementById("workerresult").innerHTML = event.data;
+        };
+    } else {
+        document.getElementById("workerresult").innerHTML = "Sorry, your browser does not support Web Workers...";
+    }
+}
+
+function stopWorker() { 
+    w.terminate();
+    w = undefined;
+}
+</script>
+
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Otros Ejemplos</h2>
+  </hgroup>
+  <article >
+  <p><b>HTML5 Server-Sent Events</b></p>
+  <ul class="build">
+    <li>Un server-sent event es cuando una página web se actualiza automáticamente a partir de informacion desde el servidor</li>
+    <li>Esto se podía realizar anteriormente, pero a través de pooling desde el cliente, no iniciado por el servidor</li>
+  </ul>
+  <p><b>Application Cache</b></p>
+  <ul class="build">
+    <li>Permite que una aplicación web sea almacenada en cache en el cliente y accesible sin conexión a internet.</li>
+    <li>Provee las siguientes ventajas:
+      <ul class="build">
+        <li>Navegación offline, los usuarios puede usar la app sin conexión a internet.</li>
+        <li>Velocidad, los recursos en cache se cargan más rápidamente.</li>
+        <li>Disminuye la carga en el servidor, solo se descargan los recursos actualizados o cambiados.</li>
+      </ul>
+    </li>
+  </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Otros Ejemplos</h2>
+  </hgroup>
+  <article>
+  <p><b>Web Sockets</b></p>
+  <ul class="build">
+    <li>Web Sockets permite una comunicación bidireccional (de bajo nivel) para aplicaciones web entre el cliente y servidor.</li>
+    <li> Una vez que se obtiene una conexión con un servidor web, el cliente puede:
+      <ul class="build">
+        <li>enviar un mensaje usando el método <b>send()</b></li>
+        <li>recibir mensajes a través del evento <b>onmessage</b></li>
+        <li>detectar cambios de estado en la conexión, tales como la conexión inicial, o la interrupción de la misma.</li>
+      </ul>
+    </li>
+  </ul>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Referencias</h2>
+  </hgroup>
+  <article>
+  <ul>
+    <li><a href="https://www.w3.org/TR/html5/">W3C - HTML5</a></li>
+    <li><a href="http://www.html5rocks.com/es/">HTML5 Rocks</a></li>
+    <li><a href="http://html5readiness.com/">HTML5 readiness</a></li>
+    <li><a href="https://html5test.com/">HTML5 Browser Test</a></li>
+    <li><a href="http://www.w3schools.com/html/html5_intro.asp">W3Schools</a></li>
+  </ul>
+  </article>
+</slide>
+
