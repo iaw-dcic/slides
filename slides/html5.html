@@ -4,7 +4,7 @@ var SLIDE_CONFIG = {
   settings: {
     name: 'html5',
     title: 'HTML 5',
-    subtitle: 'Ejemplos',
+    subtitle: 'Introducción con algunos ejemplos',
    eventInfo: {
      title: 'Clase Práctica 4',
      date: '28/04/2016'
@@ -78,7 +78,7 @@ var SLIDE_CONFIG = {
   </hgroup>
   <article>
     <p>Las más interesantes son:</p>
-    <ul ><!-- class="build" -->
+    <ul class="build">
       <li>HTML Geolocation</li>
       <li>HTML Drag and Drop</li>
       <li>HTML Local Storage</li>
@@ -168,6 +168,7 @@ var SLIDE_CONFIG = {
 </table>
 <br>
 
+<ul class="build">
 <pre class="prettyprint" data-lang="html5" style="width: 600px; float: right;">
 &lt;form action=&quot;.&quot;&gt;
   &lt;input list=&quot;browsers&quot;&gt;
@@ -178,7 +179,8 @@ var SLIDE_CONFIG = {
   &lt;/datalist&gt; 
 &lt;/form&gt;
 </pre>
-<p>Ingrese su Navegador:<form action=".">
+<form action=".">
+<p>Ingrese su Navegador:</p>
   <input list="browsers">
   <datalist id="browsers">
     <option value="Internet Explorer">
@@ -188,6 +190,7 @@ var SLIDE_CONFIG = {
     <option value="Safari">
   </datalist> 
 </form>
+</ul>
 </article>
 </slide>
 
@@ -251,6 +254,7 @@ var SLIDE_CONFIG = {
     #html5input input {position: absolute; left: 300px;}
     #html5input div {margin-bottom: 5px;}
   </style>
+  <ul class="build">
 <div>color<input type="color"></input></div>
 <div>date<input type="date"></input></div>
 <div>datetime<input type="datetime"></input></div>
@@ -264,6 +268,7 @@ var SLIDE_CONFIG = {
 <div>time<input type="time"></input></div>
 <div>url<input type="url"></input></div>
 <div>week<input type="week"></input></div>
+</ul>
   </article>
 </slide>
 
@@ -289,12 +294,7 @@ var SLIDE_CONFIG = {
 </tbody></table>
 
 <br>
-
-<!-- <pre class="prettyprint" data-lang="html5" style="width: 700px; float: right;">
-&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot; style=&quot;border:1px solid #d3d3d3;&quot;&gt;
-Your browser does not support the HTML5 canvas tag.
-&lt;/canvas&gt;</pre>
- -->
+<ul class="build">
 <pre class="prettyprint" data-lang="js" style="width: 700px; float: right;">
 var c = document.getElementById(&quot;myCanvas&quot;);
 var ctx = c.getContext(&quot;2d&quot;);
@@ -306,14 +306,6 @@ ctx.stroke();</pre>
 <canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
 Your browser does not support the HTML5 canvas tag.
 </canvas>
-
-<script>
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-ctx.beginPath();
-ctx.arc(100,50,40,0,2*Math.PI);
-ctx.stroke();
-</script> 
 </div>
 
 <br>
@@ -332,6 +324,14 @@ ctx.stroke();
 Sorry, your browser does not support inline SVG.
 </svg>
 </div>
+</ul>
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,50,40,0,2*Math.PI);
+ctx.stroke();
+</script> 
 
   </article>
 </slide>
