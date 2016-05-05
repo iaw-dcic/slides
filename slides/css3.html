@@ -1,0 +1,1164 @@
+<script>
+var SLIDE_CONFIG = {
+  // Slide settings
+  settings: {
+    name: 'css3',
+    title: 'CSS 3',
+    subtitle: 'Introducción con algunos ejemplos',
+   eventInfo: {
+     title: 'Clase Práctica 5',
+     date: '05/05/2016'
+   },
+    useBuilds: true, // Default: true. False will turn off slide animation builds.
+    usePrettify: true, // Default: true
+    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
+    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
+    //analytics: 'UA-XXXXXXXX-1', // TODO: Using this breaks GA for some reason (probably requirejs). Update your tracking code in template.html instead.
+    favIcon: 'images/logo-dcic.png',
+    fonts: [
+      'Open Sans:regular,semibold,italic,italicsemibold',
+      'Source Code Pro'
+    ],
+    //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
+  },
+
+  // Author information
+  presenters: [{
+    name: 'Mariano Tucat',
+    company: 'DCIC - Universidad Nacional del Sur',
+    gplus: 'https://www.google.com/+MarianoTucat',
+    twitter: '@eltucky',
+    www: 'http://cs.uns.edu.ar/~mt/',
+    github: 'http://github.com/MarianoTucat'
+  }]
+};
+</script>
+<slide>
+  <hgroup>
+    <h2>CSS 3</h2>
+  </hgroup>
+  <article>
+      <ul class="build">
+        <li>es el último estandard CSS en la actualidad.</li>
+        <li>es compatible con las versiones anteriores</li>
+        <li>
+          Entre las mejoras que incluye, se encuentran:
+          <ul>
+            <li>Selectores</li>
+            <li>Modelo de Cajas</li>
+            <li>Colores, Gradientes, Fuentes, Efectos de Texto</li>
+            <li>Bordes y Fondos</li>
+            <li>Imágenes y Botones</li>
+            <li>Transformacions 2D/3D y animaciones</li>
+          </ul>
+        </li>
+      </ul>
+  </article>
+</slide>
+
+<!-- <base href="http://www.w3schools.com/cssref/"></base> -->
+<slide>
+  <hgroup>
+    <h2>Selectores - CSS 1</h2>
+  </hgroup>
+  <article>
+  <table class="small">
+  <tbody><tr>
+    <th style="width:20%">Selector</th>
+    <th style="width:20%">Example</th>
+    <th style="width:52%">Example description</th>
+    <th>CSS</th>
+  </tr>
+  <tr>
+    <td><a href="sel_class.asp">.<i>class</i></a></td>
+    <td class="notranslate">.intro</td>
+    <td>Selects all elements with class="intro"</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td><a href="sel_id.asp">#<i>id</i></a></td>
+    <td class="notranslate">#firstname</td>
+    <td>Selects the element with id="firstname"</td>
+    <td>1</td>
+  </tr>  
+  <tr>
+    <td><i><a href="sel_element.asp">element</a></i></td>
+    <td class="notranslate">p</td>
+    <td>Selects all &lt;p&gt; elements</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td><i><a href="sel_element_comma.asp">element,element</a></i></td>
+    <td class="notranslate">div, p</td>
+    <td>Selects all &lt;div&gt; elements and all &lt;p&gt; elements</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td><a href="sel_element_element.asp"><i>element</i> <i>element</i></a></td>
+    <td class="notranslate">div p</td>
+    <td>Selects all &lt;p&gt; elements inside &lt;div&gt; elements</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td><a href="sel_active.asp">:active</a></td>
+    <td class="notranslate">a:active</td>
+    <td>Selects the active link</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td><a href="sel_firstletter.asp">::first-letter</a></td>
+    <td class="notranslate">p::first-letter</td>
+    <td>Selects the first letter of every &lt;p&gt; element</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td><a href="sel_firstline.asp">::first-line</a></td>
+    <td class="notranslate">p::first-line</td>
+    <td>Selects the first line of every &lt;p&gt; element</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td><a href="sel_hover.asp">:hover</a></td>
+    <td class="notranslate">a:hover</td>
+    <td>Selects links on mouse over</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td><a href="sel_link.asp">:link</a></td>
+    <td class="notranslate">a:link</td>
+    <td>Selects all unvisited links</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td><a href="sel_visited.asp">:visited</a></td>
+    <td class="notranslate">a:visited</td>
+    <td>Selects all visited links</td>
+    <td>1</td>
+  </tr>
+</tbody></table>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Selectores - CSS 2</h2>
+  </hgroup>
+  <article>
+  <table class="small">
+  <tbody><tr>
+    <th style="width:20%">Selector</th>
+    <th style="width:20%">Example</th>
+    <th style="width:52%">Example description</th>
+    <th>CSS</th>
+  </tr>
+  <tr>
+    <td><a href="sel_all.asp">*</a></td>
+    <td class="notranslate">*</td>
+    <td>Selects all elements</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_element_gt.asp"><i>element</i>&gt;<i>element</i></a></td>
+    <td class="notranslate">div &gt; p</td>
+    <td>Selects all &lt;p&gt; elements where the parent is a &lt;div&gt; element</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_element_pluss.asp"><i>element</i>+<i>element</i></a></td>
+    <td class="notranslate">div + p</td>
+    <td>Selects all &lt;p&gt; elements that are placed immediately after &lt;div&gt; elements</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_attribute.asp">[<i>attribute</i>]</a></td>
+    <td class="notranslate">[target]</td>
+    <td>Selects all elements with a target attribute</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_attribute_value.asp">[<i>attribute</i>=<i>value</i>]</a></td>
+    <td class="notranslate">[target=_blank]</td>
+    <td>Selects all elements with target="_blank"</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_attribute_value_contains.asp">[<i>attribute</i>~=<i>value</i>]</a></td>
+    <td class="notranslate">[title~=flower]</td>
+    <td>Selects all elements with a title attribute containing the word "flower"</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_attribute_value_lang.asp">[<i>attribute</i>|=<i>value</i>]</a></td>
+    <td class="notranslate">[lang|=en]</td>
+    <td>Selects all elements with a lang attribute value starting with "en"</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_after.asp">::after</a></td>
+    <td class="notranslate">p::after</td>
+    <td>Insert something after the content of each &lt;p&gt; element</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_before.asp">::before</a></td>
+    <td class="notranslate">p::before</td>
+    <td>Insert something before&nbsp;the content of each &lt;p&gt; element</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_firstchild.asp">:first-child</a></td>
+    <td class="notranslate">p:first-child</td>
+    <td>Selects every &lt;p&gt; element that is the first child of its parent</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_focus.asp">:focus</a></td>
+    <td class="notranslate">input:focus</td>
+    <td>Selects the input element which has focus</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td><a href="sel_lang.asp">:lang(<i>language</i>)</a></td>
+    <td class="notranslate">p:lang(it)</td>
+    <td>Selects every &lt;p&gt; element with a lang attribute equal to "it" 
+  (Italian)</td>
+    <td>2</td>
+  </tr>
+</tbody></table>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Selectores - CSS 3</h2>
+  </hgroup>
+  <article>
+  <table class="small">
+  <tbody><tr>
+    <th style="width:20%">Selector</th>
+    <th style="width:20%">Example</th>
+    <th style="width:52%">Example description</th>
+    <th>CSS</th>
+  </tr>
+  <tr>
+    <td><a href="sel_gen_sibling.asp"><i>element1</i>~<i>element2</i></a></td>
+    <td>p ~ ul</td>
+    <td>Selects every &lt;ul&gt; element that are preceded by a &lt;p&gt; element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_attr_begin.asp">[<i>attribute</i>^=<i>value</i>]</a></td>
+    <td>a[href^="https"]</td>
+    <td>Selects every &lt;a&gt; element whose href attribute value begins with "https"</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_attr_end.asp">[<i>attribute</i>$=<i>value</i>]</a></td>
+    <td>a[href$=".pdf"]</td>
+    <td>Selects every &lt;a&gt; element whose href attribute value ends with ".pdf"</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_attr_contain.asp">[<i>attribute</i>*=<i>value</i>]</a></td>
+    <td>a[href*="w3schools"]</td>
+    <td>Selects every &lt;a&gt; element whose href attribute value contains the substring 
+  "w3schools"</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_checked.asp">:checked</a></td>
+    <td>input:checked</td>
+    <td>Selects every checked &lt;input&gt; element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_disabled.asp">:disabled</a></td>
+    <td>input:disabled</td>
+    <td>Selects every disabled &lt;input&gt; element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_empty.asp">:empty</a></td>
+    <td>p:empty</td>
+    <td>Selects every &lt;p&gt; element that has no children (including text nodes)</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_enabled.asp">:enabled</a></td>
+    <td>input:enabled</td>
+    <td>Selects every enabled &lt;input&gt; element</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_first-of-type.asp">:first-of-type</a></td>
+    <td>p:first-of-type</td>
+    <td>Selects every &lt;p&gt; element that is the first &lt;p&gt; element of its parent</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_in-range.asp">:in-range</a></td>
+    <td class="notranslate">input:in-range</td>
+    <td>Selects input elements with a value within a specified range</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_invalid.asp">:invalid</a></td>
+    <td class="notranslate">input:invalid</td>
+    <td>Selects all input elements with an invalid value</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_last-child.asp">:last-child</a></td>
+    <td>p:last-child</td>
+    <td>Selects every &lt;p&gt; element that is the last child of its parent</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_last-of-type.asp">:last-of-type</a></td>
+    <td>p:last-of-type</td>
+    <td>Selects every &lt;p&gt; element that is the last &lt;p&gt; element of its parent</td>
+    <td>3</td>
+  </tr>
+  
+  <tr>
+    <td><a href="sel_not.asp">:not(<i>selector</i>)</a></td>
+    <td>:not(p)</td>
+    <td>Selects every element that is not a &lt;p&gt; element</td>
+    <td>3</td>
+  </tr>
+
+  </tbody></table>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Selectores - CSS 3</h2>
+  </hgroup>
+  <article>
+  <table class="small">
+  <tbody><tr>
+    <th style="width:20%">Selector</th>
+    <th style="width:20%">Example</th>
+    <th style="width:52%">Example description</th>
+    <th>CSS</th>
+  </tr>
+
+  <tr>
+    <td><a href="sel_nth-child.asp">:nth-child(<i>n</i>)</a></td>
+    <td>p:nth-child(2)</td>
+    <td>Selects every &lt;p&gt; element that is the second child of its parent</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_nth-last-child.asp">:nth-last-child(<i>n</i>)</a></td>
+    <td>p:nth-last-child(2)</td>
+    <td>Selects every &lt;p&gt; element that is the second child of its parent, counting 
+  from the last child</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_nth-last-of-type.asp">:nth-last-of-type(<i>n</i>)</a></td>
+    <td>p:nth-last-of-type(2)</td>
+    <td>Selects every &lt;p&gt; element that is the second &lt;p&gt; element of its parent, counting 
+  from the last child</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_nth-of-type.asp">:nth-of-type(<i>n</i>)</a></td>
+    <td>p:nth-of-type(2)</td>
+    <td>Selects every &lt;p&gt; element that is the second &lt;p&gt; element of its parent</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_only-of-type.asp">:only-of-type</a></td>
+    <td>p:only-of-type</td>
+    <td>Selects every &lt;p&gt; element that is the only &lt;p&gt; element of its 
+  parent</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_only-child.asp">:only-child</a></td>
+    <td>p:only-child</td>
+    <td>Selects every &lt;p&gt; element that is the only child of its parent</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_optional.asp">:optional</a></td>
+    <td class="notranslate">input:optional</td>
+    <td>Selects input elements with no "required" attribute</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_out-of-range.asp">:out-of-range</a></td>
+    <td class="notranslate">input:out-of-range</td>
+    <td>Selects input elements with a value outside a specified range</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_read-only.asp">:read-only</a></td>
+    <td class="notranslate">input:read-only</td>
+    <td>Selects input elements with the "readonly" attribute specified</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_read-write.asp">:read-write</a></td>
+    <td class="notranslate">input:read-write</td>
+    <td>Selects input elements with the "readonly" attribute NOT specified</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_required.asp">:required</a></td>
+    <td class="notranslate">input:required</td>
+    <td>Selects input elements with the "required" attribute specified</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_root.asp">:root</a></td>
+    <td>:root</td>
+    <td>Selects the document's root element</td>
+    <td>3</td>
+  </tr>
+
+  <tr>
+    <td><a href="sel_target.asp">:target</a></td>
+    <td>#news:target </td>
+    <td>Selects the current active #news element (clicked on a URL containing that anchor name)</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td><a href="sel_valid.asp">:valid</a></td>
+    <td class="notranslate">input:valid</td>
+    <td>Selects all input elements with a valid value</td>
+    <td>3</td>
+  </tr>
+</tbody></table>
+  </article>
+</slide>
+
+<base href="."></base>
+
+<slide>
+  <hgroup>
+    <h2>Box Sizing</h2>
+  </hgroup>
+  <article>
+    <p>Por defecto, el ancho y alto se calculan asi:</p>
+    <ul>
+      <li>ancho + padding + borde = ancho real</li>
+      <li>alto + padding + borde = alto real</li>
+    </ul>
+    <p><b>box-sizing</b> permite incluir en el ancho y alto el padding y el borde.</p>
+    <p>Usando:</p> 
+<pre class="prettyprint" data-lang="css3">
+* {
+    box-sizing: border-box;
+}</pre>
+<p>el padding y el borde es considerado parte del ancho y alto.</p>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Flex Box</h2>
+  </hgroup>
+  <article>
+  <ul>
+    <li><B>Flexbox</B> es un nuevo modo de layout introducido en CSS3.</li>
+    <li>Usar flexbox permite asegurar que los elementos se comporten de manera predecible cuando la disposición de la página se debe acomodar a los distintos tamaños de pantallas y tipos de dispositivos.</li>
+    <li>Consiste en <I>Contenedores</I> y <I>Elementos</I></li>
+    <li>Dentro de un <I>Contenedor</I> hay uno o más <I>Elementos</I></li>
+    <li>Las propiedades flex no afectan a los elementos fuera del <I>Contenedor</I> ni dentro de los <I>Elementos</I></li>
+  </ul>
+</article>
+</slide>
+
+
+<slide>
+<style> 
+.container .flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: center;
+    align-content: center;
+    width: 300px;
+    height: 300px;
+    background-color: lightgrey;
+}
+
+.container .flex-item {
+    background-color: cornflowerblue;
+    width: 120px;
+    height: 100px;
+    margin:5px auto;
+    font-size: 20px;
+}
+</style>
+  <hgroup>
+    <h2>Flex Box</h2>
+  </hgroup>
+  <article class="container">
+<pre class="prettyprint" data-lang="css3" style="width: 500px; float: right; ">
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 300px;
+    height: 300px;
+    background-color: lightgrey;
+}
+.flex-item {
+    background-color: cornflowerblue;
+    width: 120px;
+    height: 100px;
+    margin:5px auto;
+    font-size: 20px;
+}</pre>
+    <p>Propiedades de Contenedores:</p>
+      <ul>
+        <li>flex-direction</li>
+        <li>justify-content</li>
+        <li>align-items</li>
+        <li>flex-wrap</li>
+        <li>align-content</li>
+      </ul>
+
+<div class="flex-container">
+  <div class="flex-item">flex-item 1</div>
+  <div class="flex-item">flex-item 2</div>
+  <div class="flex-item">flex-item 3</div>  
+</div>
+
+</article>
+</slide>
+
+<style> 
+.item .flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+
+.item .flex-item {
+    background-color: cornflowerblue;
+    margin: 10px;
+    font-size: 20px;
+
+}
+
+.item .item1 {
+    -webkit-flex: 2;
+    flex: 2;
+}
+
+.item .item2 {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.item .item3 {
+    -webkit-flex: 1;
+    flex: 1;
+}
+</style>
+
+<slide>
+  <hgroup>
+    <h2>Flex Box</h2>
+  </hgroup>
+  <article class="item">
+
+<pre class="prettyprint" data-lang="css3" style="width: 500px; float: right; ">
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+.flex-item {
+    background-color: cornflowerblue;
+    margin: 10px;
+}
+.item1 {
+    flex: 2;
+}
+.item2 {
+    flex: 1;
+}
+.item3 {
+    flex: 1;
+}
+</pre>
+
+    <p>Propiedades de Elementos:</p>
+      <ul>
+        <li>order</li>
+        <li>margin</li>
+        <li>align-self</li>
+        <li>flex</li>
+      </ul>
+    
+
+<div class="flex-container">
+  <div class="flex-item item1">flex item 1</div>
+  <div class="flex-item item2">flex item 2</div>
+  <div class="flex-item item3">flex item 3</div>  
+</div>
+
+</article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Colores</h2>
+  </hgroup>
+  <article>
+  <p>CSS ya soportaba nombres de colores y valores hexadecimal y RGB.</p>
+  <p>CSS3 incorpora:</p>
+  <ul>
+    <li>RGBA (transparencias)</li>
+    <li>HSL</li>
+    <li>HSLA</li>
+    <li>opacidad</li>
+  </ul>
+
+<style>
+.colores p {margin: 10px; padding: 10px 5px; color: white;}
+#rgba {background-color:rgba(255,0,0,0.4);}
+#hsl {background-color:hsl(0, 100%, 50%);}
+#hsla {background-color:hsla(0, 100%, 50%, 0.5);}
+#opacidad {background-color:rgb(255, 0, 0);opacity:0.6;}
+</style>
+
+<div class="colores">
+<p id="rgba">background-color:rgba(255,0,0,0.4);</p>
+<p id="hsl">background-color:hsl(0, 100%, 50%);</p>
+<p id="hsla">background-color:hsla(0, 100%, 50%, 0.5);</p>
+<p id="opacidad">background-color:rgb(255, 0, 0);opacity:0.6;</p>
+</div>
+</article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Gradientes</h2>
+  </hgroup>
+  <article>
+
+<p>CSS3 permite permiten mostrar transiciones suaves entre los dos o más colores</p>
+<p>Previo a CSS3, para lograr el mismo efecto, era necesario utilizar imágenes, lo cual afectaba el rendimiento de la página.</p>
+
+<p>CSS3 define dos tipos de gradientes:</p>
+<ul>
+  <li>Los gradientes lineales (hacia arriba / abajo / izquierda / derecha / diagonal)</li>
+  <li>Los gradientes radiales (definido por su centro)</li>
+</ul>
+
+<style type="text/css">
+  #grad1 {
+    height: 100px;
+    width:100%;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    color:white;
+    opacity:0.95;
+}
+
+</style>
+<div id="grad1" style="text-align:center;margin:auto;color:#f3f3f3;font-size:30px;font-weight:550;padding-top:75px;">
+Gradiente Diagonal</div>
+
+</article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Sombras</h2>
+  </hgroup>
+  <article class="shadow">
+  <p>CSS3 permite agregarle sombras a texto y elementos, utilizando las propiedades:</p>
+  <ul>
+    <li>text-shadow</li>
+    <li>box-shadow</li>
+  </ul>
+
+<pre class="prettyprint" data-lang="css3" style="width: 650px; float: right; ">
+  h1 {
+      text-shadow: 1px 1px 2px black, 
+                    0 0 25px blue, 
+                    0 0 5px darkblue;
+  }
+</pre>
+
+<style>
+.shadow h1 {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+</style>
+<h1>Sombra en el Texto</h1>
+
+<pre class="prettyprint" data-lang="css3" style="width: 650px; float: right; ">
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+</pre>
+
+<style>
+div.card {
+  margin-top: 120px; 
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+div.header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 40px;
+    font-size: 40px;
+}
+
+div.container {
+    padding: 20px;
+}
+div.container p {
+  margin-bottom: 0; 
+}
+</style>
+
+<div class="card">
+  <div class="header">
+    <h2>1</h2>
+  </div>
+
+  <div class="container">
+    <p>January 1, 2016</p>
+  </div>
+</div>
+
+</article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Texto</h2>
+  </hgroup>
+  <article>
+  <p>Algunas de las características nuevas relacionadas al texto son:</p>
+  <ul>
+    <li>text-overflow</li>
+    <li>word-wrap</li>
+    <li>word-break</li>
+  </ul>
+
+<style> 
+div.test {
+    white-space: nowrap; 
+    width: 200px; 
+    overflow: hidden; 
+    border: 1px solid #000000;
+}
+
+div.test:hover {
+    text-overflow: inherit;
+    overflow: visible;
+}
+</style>
+
+<div class="test" style="text-overflow:ellipsis;">Este texto es más largo que el contenedor</div>
+<pre class="prettyprint" data-lang="css3" style="width: 650px; float: right; ">
+  div {
+    text-overflow: ellipsis;
+  }
+</pre>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="test" style="text-overflow:clip;">Este texto es más largo que el contenedor</div>
+<pre class="prettyprint" data-lang="css3" style="width: 650px; float: right; ">
+  div {
+    text-overflow: clip;
+  }
+</pre>
+
+
+
+</article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Fuentes Web</h2>
+  </hgroup>
+  <article>
+<p>Las fuentes web permiten a los diseñadores web para utilizar las fuentes que no están instaladas en el navegador del usuario.</p>
+
+<p>Basta con incluir el archivo de fuente en su servidor web, y se descargará automáticamente al usuario cuando sea necesario.</p>
+
+<p>Las fuentes web se definen utilizando la regla <B>@font-face</B></p>
+
+<pre class="prettyprint" data-lang="css3">
+@font-face {
+    font-family: fuente;
+    src: url(archivo_fuente.woff);
+    font-weight: bold;
+}
+</pre>
+
+
+</article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Bordes</h2>
+  </hgroup>
+  <article>
+<p>CSS3 incluye las siguientes propiedaded para bordes:</p>
+<ul>
+  <li><B>border-radius</B>, permite lograr bordes redondeados.</li>
+  <li><B>border-image</B>, permite usar imágenes para bordes.</li>
+</ul>
+
+
+<style type="text/css">
+#rcorners {
+  text-align: center;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px; 
+  width: 280px;
+}
+#borderimg { 
+  text-align: center;
+  width: 280px;
+  border: 10px solid transparent;
+  padding: 15px;
+  -webkit-border-image: url(images/border.png) 30 stretch; /* Safari 3.1-5 */
+  -o-border-image: url(images/border.png) 30 stretch; /* Opera 11-12.1 */
+  border-image: url(images/border.png) 30 stretch;
+}
+</style>
+<pre class="prettyprint" data-lang="css3" style="width: 400px; float: right; ">
+#rcorners {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+}  
+</pre>
+<p id="rcorners">Bordes redondeados</p>
+
+<p id="borderimg">Imágenes de borde</p>
+<pre class="prettyprint" data-lang="css3" style="width: 650px; float: right; ">
+#borderimg { 
+  border: 10px solid transparent;
+  padding: 15px;
+  border-image: url(images/border.png) 30 stretch;
+}  
+</pre>
+
+</article>
+</slide>
+
+
+
+
+
+<slide>
+  <hgroup>
+    <h2>Transformaciones CSS</h2>
+  </hgroup>
+  <article>
+    <p>Las transformaciones CSS3 le permiten trasladar, rotar, escalar y sesgar elementos.</p>
+    <p>CSS3 admite transformaciones 2D y 3D.</p>
+
+<style>
+.rotate {
+  float: right;
+  margin-right: 100px; 
+}
+
+.rotate div {
+  width: 300px;
+  color: white;
+  height: 100px;
+  background-color: green;
+  border: 1px solid black;
+}
+
+.rotate div#myDiv {
+  margin-top: 100px; 
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari */
+  transform: rotate(45deg); /* Standard syntax */
+}
+</style>
+
+<div class="rotate">
+  <div>
+    Elemento normal
+  </div>
+
+  <div id="myDiv">
+    Elemento rotado en sentido horario 45 grados.
+  </div>
+</div>
+    <ul>
+      <li><code>translate()</code></li>
+      <li><code>rotate()</code></li>
+      <li><code>scale()</code></li>
+      <li><code>skewX()</code></li>
+      <li><code>skewY()</code></li>
+      <li><code>matrix()</code></li>
+    </ul>
+
+<pre class="prettyprint" data-lang="css3" style="width: 650px;">
+.rotar {
+    transform: rotate(45deg);
+}  
+</pre>
+  </article>
+</slide>
+
+
+
+
+
+
+<slide>
+  <hgroup>
+    <h2>Transformaciones CSS</h2>
+  </hgroup>
+  <article >
+<style>
+.transform {
+  float: right;
+  margin-right: 100px; 
+  color: white;
+}
+
+.transform div {
+    width: 300px;
+    height: 100px;
+    background-color: green;
+    border: 1px solid black;
+}
+
+.transform div#myDiv {
+    -webkit-transform: rotateY(45deg); /* Safari */
+    transform: rotateY(45deg); /* Standard syntax */
+}
+</style>
+
+<div class="transform">
+  <div>
+      Elemento normal
+  </div>
+</div>
+
+<ul>
+  <li><code>rotateX()</code></li>
+  <li><code>rotateY()</code></li>
+  <li><code>rotateZ()</code></li>
+</ul>
+
+<div class="transform">
+  <div id="myDiv">
+      Elemento transformado en el eje Y en sentido horario 45 grados.
+  </div>
+</div>
+
+<pre class="prettyprint" data-lang="css3" style="width: 650px;">
+.transform {
+    transform: rotateY(45deg);
+}  
+</pre>
+
+
+  </article>
+</slide>
+
+
+
+<slide>
+  <hgroup>
+    <h2>Transiciones</h2>
+  </hgroup>
+  <article>
+
+<p>Las transiciones CSS3 le permite cambiar los valores de propiedad (de un valor a otro), durante un periodo determinado.</p>
+<p>Para crear un efecto de transición, debe especificar dos cosas:</p>
+<ul>
+  <li>la propiedad CSS que desea añadir un efecto a</li>
+  <li>la duración del efecto</li>
+</ul>
+
+<div class="animated_div">CSS3</div>
+
+<pre class="prettyprint" data-lang="css3" style="width: 350px; float: right;">
+.anim_div:hover {
+    opacity: 1;
+    background: #1ec7e6;
+    width: 130px;
+    height: 60px;
+    font-size: 55px;
+}
+</pre>
+
+<pre class="prettyprint" data-lang="css3" style="width: 600px;">
+.anim_div {
+    opacity: 0.4;
+    background: #92B901;
+    width: 65px;
+    height: 30px;
+    transition-property: 
+        width,height,transform,background,
+        font-size,opacity;
+    transition-duration: 
+        1s,1s,1s,1s,1s,1s;
+}
+</pre>
+<style>
+.animated_div {
+    width: 65px;
+    height: 30px;
+    bottom: 40px;
+    right: 150px;
+    background: #92B901;
+    color: #ffffff;
+    position: absolute;
+    font-weight: bold;
+    padding: 10px;
+    float: left;
+    margin: 5px;
+    -webkit-transition: -webkit-transform 1s,opacity 1s,background 1s,width 1s,height 1s,font-size 1s;
+    -webkit-border-radius: 5px;
+    -o-transition-property: width,height,-o-transform,background,font-size,opacity;
+    -o-transition-duration: 1s,1s,1s,1s,1s,1s;
+    -moz-transition-property: width,height,-o-transform,background,font-size,opacity;
+    -moz-transition-duration: 1s,1s,1s,1s,1s,1s;
+    transition-property: width,height,transform,background,font-size,opacity;
+    transition-duration: 1s,1s,1s,1s,1s,1s;
+    border-radius: 5px;
+    opacity: 0.4;
+}
+.animated_div:hover {
+    opacity: 1;
+    background: #1ec7e6;
+    width: 130px;
+    height: 60px;
+    font-size: 55px;
+}
+</style>
+
+  </article>
+</slide>
+
+
+
+<slide>
+  <hgroup>
+    <h2>Animaciones</h2>
+  </hgroup>
+  <article>
+  <ul>
+    <li>CSS3 permiten lograr animaciones con la mayoría de los elementos HTML sin necesidad de utilizar JavaScript o Flash!</li>
+    <li>CSS3 permite a un elemento de cambiar gradualmente de un estilo a otro.</li>
+    <li>Se puede cambiar tantas propiedades CSS que desee, las veces que desee.</li>
+    <li>Para utilizar la animación CSS3, se deben especificar <B>keyframes</B>:</li>
+  </ul>
+
+<button onclick="animar()" style="float: right;">Animar Logo DCIC</button>
+<pre class="prettyprint" data-lang="css3" style="width: 600px;">
+.animated_div {
+    animation: animated_div_2 5s 1;
+}
+@keyframes animated_div {
+    0% {  transform: rotate(0deg);
+          left: 0px; }
+...
+    100% { transform: rotate(-360deg);
+           left: 0px;  }
+}
+</pre>
+<script type="text/javascript">
+  function animar() {
+    $("#animated_div_2").attr("class", "animated_div_2");
+  }
+</script>
+<div id="animated_div_2">
+  <img width="30px" style="margin-top: 5px;" src="images/logo-dcic.png">
+</div>
+
+<style type="text/css">
+.animated_div_2 {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    font-weight: bold;
+    font-size: 20px;
+    animation: animated_div_2 5s 1;
+    -moz-animation: animated_div_2 5s 1;
+    -webkit-animation: animated_div_2 5s 1;
+    -o-animation: animated_div_2 5s 1;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+@keyframes animated_div_2
+{
+    0% {
+        transform: rotate(0deg);
+        left: 0px;
+    }
+    25% {
+        transform: rotate(20deg);
+        left: 0px;
+    }
+    50% {
+        transform: rotate(0deg);
+        left: 500px;
+    }
+    55% {
+        transform: rotate(0deg);
+        left: 500px;
+    }
+    70% {
+        transform: rotate(0deg);
+        left: 500px;
+    }
+    100% {
+        transform: rotate(-360deg);
+        left: 0px;
+    }
+}
+</style>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Referencias</h2>
+  </hgroup>
+  <article>
+  <ul>
+    <li><a href="https://www.w3.org/TR/CSS/">W3C - CSS</a></li>
+    <li><a href="http://css3generator.com/">CSS3 Generator</a></li>
+    <li><a href="http://www.creativebloq.com/css3/animation-with-css3-712437">Animaciones con CSS3</a></li>
+    <li><a href="http://css3test.com/">CSS3 Browser Test</a></li>
+    <li><a href="http://www.w3schools.com/css/css3_intro.asp">W3Schools</a></li>
+  </ul>
+  </article>
+</slide>
+
