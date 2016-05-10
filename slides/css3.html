@@ -7,7 +7,7 @@ var SLIDE_CONFIG = {
     subtitle: 'Introducción con algunos ejemplos',
    eventInfo: {
      title: 'Clase Práctica 5',
-     date: '05/05/2016'
+     date: '10/05/2016'
    },
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
@@ -38,9 +38,9 @@ var SLIDE_CONFIG = {
     <h2>CSS 3</h2>
   </hgroup>
   <article>
-      <ul class="build">
-        <li>es el último estandard CSS en la actualidad.</li>
-        <li>es compatible con las versiones anteriores</li>
+      <ul>
+        <li>Es el último estandard CSS en la actualidad.</li>
+        <li>Es compatible con las versiones anteriores</li>
         <li>
           Entre las mejoras que incluye, se encuentran:
           <ul>
@@ -48,7 +48,6 @@ var SLIDE_CONFIG = {
             <li>Modelo de Cajas</li>
             <li>Colores, Gradientes, Fuentes, Efectos de Texto</li>
             <li>Bordes y Fondos</li>
-            <li>Imágenes y Botones</li>
             <li>Transformacions 2D/3D y animaciones</li>
           </ul>
         </li>
@@ -660,10 +659,21 @@ var SLIDE_CONFIG = {
   <li>Los gradientes radiales (definido por su centro)</li>
 </ul>
 
+<pre class="prettyprint" data-lang="css3" style="width: 650px; float: left;">
+  #grad1 {
+    background: linear-gradient(141deg, #0fb8ad 0%, 
+                                        #1fc8db 51%, 
+                                        #2cb5e8 75%);
+    color:white;
+    opacity:0.95;
+}
+</pre>
+
 <style type="text/css">
   #grad1 {
+    float: right;
     height: 100px;
-    width:100%;
+    width:300px;
     background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
     color:white;
     opacity:0.95;
@@ -816,6 +826,20 @@ div.test:hover {
 }
 </pre>
 
+<style> 
+@font-face {
+   font-family: fuente;
+   src: url(../fonts/sansation_light.woff);
+}
+
+#fontface {
+   font-family: fuente;
+}
+</style>
+
+<p id='fontface'>
+  Con CSS3, las páginas web pueden finalmente incluir sus propias fuentes.
+</p>
 
 </article>
 </slide>
@@ -1146,6 +1170,110 @@ div.test:hover {
 </style>
   </article>
 </slide>
+
+<slide>
+  <hgroup>
+    <h2>Media Queries</h2>
+  </hgroup>
+  <article>
+<ul>
+  <li>Las 'Media Queries' permiten definir reglas CSS en base a las capacidades del dispositivo que está mostrando la página.</li>
+  <li>Las principales características que utilizan son:
+    <ul>
+      <li>alto y ancho de la ventana gráfica</li>
+      <li>alto y ancho del dispositivo</li>
+      <li>orientación del dispositivo</li>
+      <li>resolución</li>
+    </ul>
+  </li>
+  <li>Es una técnica muy popular para definir estilos para tablets y celulares</li>
+</ul>
+
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Media Queries</h2>
+  </hgroup>
+  <article>
+<style>
+div.media-queries {
+  padding-bottom: 10px;
+}
+.media-queries ol {
+    list-style-type: none;
+    width: 400px;
+    margin: auto;
+}
+
+.media-queries ol li a {
+    color: green;
+    text-decoration: none;
+    padding: 3px; 
+    display: block;
+    border-bottom: inherit;
+}
+
+@media screen and (max-width: 699px) and (min-width: 520px) {
+    .media-queries ol li a {
+        padding-left: 30px;
+        background: url(../images/email-icon.png) left center no-repeat;
+    }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    .media-queries ol li a:before {
+        content: "Email: ";
+        font-style: italic;
+        color: #666666;
+    }
+}
+
+@media screen and (min-width: 1001px) {
+    .media-queries ol li a:after {
+        content: " (" attr(data-email) ")";
+        font-size: 12px;
+        font-style: italic;
+        color: #666666;
+    }
+}
+</style>
+
+<div class="media-queries">
+  <ol>
+    <li><a data-email="johndoe@example.com" href="mailto:johndoe@example.com">John Doe</a></li>
+    <li><a data-email="marymoe@example.com" href="mailto:marymoe@example.com">Mary Moe</a></li>
+  </ol>
+</div>
+<pre class="prettyprint" style="line-height: 20px;" data-lang="css3" >
+@media screen and (max-width: 699px) and (min-width: 520px) {
+    ul li a {
+        background: url(email-icon.png) left center no-repeat;
+    }
+}
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    ul li a:before {
+        content: "Email: ";
+    }
+}
+@media screen and (min-width: 1001px) {
+    ul li a:after {
+        content: " (" attr(data-email) ")";
+    }
+}
+</pre>
+<pre class="prettyprint" style="line-height: 20px;" data-lang="html5" >
+&lt;ul&gt;
+  &lt;li&gt;&lt;a data-email=&quot;johndoe@example.com&quot; href=&quot;mailto:johndoe@...&quot;&gt;John Doe&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a data-email=&quot;marymoe@example.com&quot; href=&quot;mailto:marymoe@...&quot;&gt;Mary Moe&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+
+  </article>
+</slide>
+
 
 <slide>
   <hgroup>
