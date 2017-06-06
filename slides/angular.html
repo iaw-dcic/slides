@@ -5,8 +5,8 @@ var SLIDE_CONFIG = {
     name: 'angular',
     title: 'Introducción a AngularJS',
    eventInfo: {
-     title: 'Clase Práctica 5',
-     date: '26/05/2016'
+     title: 'Clase Práctica',
+     date: '06/06/2017'
    },
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
@@ -38,9 +38,9 @@ var SLIDE_CONFIG = {
     <h2>¿Qué es AngularJS?</h2>
   </hgroup>
   <article class="bigger">
-    <p>AngularJS es un framework estructural para la aplicaciones web dinámicas.</p>
+    <p>AngularJS es un framework de JavaScript para la aplicaciones web dinámicas.</p>
     <p>Permite utilizar HTML para construir templates y extender la sintaxis para expresar componentes específicos de manera clara y concisa.</p>
-    <p>Además, permite el enlace de datos y la inyección de dependencias, eliminando la necesidad de escribir código repetitivo.</p>
+    <p>Además, permite el enlace de datos (data-binding) y la inyección de dependencias (DI), eliminando la necesidad de escribir código repetitivo.</p>
     <p>Todo ocurre en el navegador, permitiendo cualquier tecnologia del lado del servidor.</p>
   </article>
 </slide>
@@ -51,10 +51,10 @@ var SLIDE_CONFIG = {
     <h2>Construcciones HTML</h2>
   </hgroup>
   <article class="bigger">
-    <p>Angular permite nuevas construcciones utilizando <i>directivas</i>:</p>
+    <p>Angular permite nuevas construcciones HTML utilizando <i>directivas</i>:</p>
     <ul class="build">
       <li>Vinculación de datos,</li>
-      <li>Estructuras de control para DOM, para repetir, mostra y ocultar fragmentos del DOM,</li>
+      <li>Estructuras de control, para repetir, mostra y ocultar fragmentos del DOM,</li>
       <li>Soporte para formularios y validación,</li>
       <li>Agregar nuevo comportamiento a elementos del DOM, como manejo de eventos,</li>
       <li>Agrupar HTML en componentes reutilizables.</li>
@@ -159,14 +159,14 @@ var SLIDE_CONFIG = {
     <h2>Vista</h2>
   </hgroup>
   <article>
-<pre class="prettyprint" data-lang="angular">&lt;div ng-controller=&quot;PedidoPizzas as pedido&quot;&gt;
+<pre class="prettyprint" data-lang="angular">&lt;div ng-controller=&quot;ControladorPedido as pedido&quot;&gt;
     &lt;div&gt;
-        &lt;input class=&quot;filtro&quot; type=&quot;text&quot; data-ng-model=&quot;inputNombre&quot;/&gt;
+        &lt;input class=&quot;filtro&quot; type=&quot;text&quot; data-ng-model=&quot;filtro&quot;/&gt;
         &lt;span class=&quot;total&quot;&gt;Total: &lt;span&gt;{{pedido.total() | currency}}&lt;/span&gt;&lt;/span&gt;
     &lt;/div&gt;
     &lt;table&gt;
         &lt;tbody&gt;
-          &lt;tr ng-repeat=&quot;pizza in pedido.pizzas | orderBy:&#39;tipo&#39; | filter:inputNombre&quot;&gt;
+          &lt;tr ng-repeat=&quot;pizza in pedido.todos() | orderBy:&#39;tipo&#39; | filter:filtro&quot;&gt;
             &lt;td&gt;
                 &lt;img ng-click=&quot;pedido.add(pizza)&quot; src=&quot;images/plus.svg&quot; class=&quot;svgicon&quot;/&gt;
                 &lt;input ng-model=&quot;pizza.cantidad&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;15&quot;&gt;
@@ -213,25 +213,26 @@ var SLIDE_CONFIG = {
     <h2>Controladores</h2>
   </hgroup>
   <article >
-    <pre class="prettyprint" data-lang="angular">var controladorPedido = angular.module(&#39;controladorPedido&#39;, []);
+    <pre class="prettyprint" data-lang="angular">pizzasApp.controller(&#39;controladorPedido&#39;, 
+    [&#39;datos&#39;, &#39;$location&#39;, function(datos, $location) {
 
-controladorPedido.controller(&#39;PedidoPizzas&#39;, function() {
   var pedido = this;
-  pedido.pizzas = [];
-  angular.forEach(jsonPizzas, function(pizza) {
-    pizzaEnPedido = jQuery.extend({}, pizza);
-    pizzaEnPedido.cantidad = 0;
-    pedido.pizzas.push(pizzaEnPedido);
-  });
-
+  pedido.todos = datos.pedido;
+  pedido.pedir = datos.pedir;
+  pedido.add = function(pizza) {
+    if (pizza.cantidad&lt;15) pizza.cantidad++;
+  };
+  pedido.remove = function(pizza) {
+    if (pizza.cantidad&gt;0) pizza.cantidad--;
+  };
   pedido.total = function() {
     var total = 0;
-    angular.forEach(pedido.pizzas, function(pizza) {
+    angular.forEach(pedido.todos(), function(pizza) {
       total += pizza.cantidad * pizza.precio;
     });
     return total;
   };
-});</pre>
+}]);</pre>
   </article>
 </slide>
 
@@ -303,14 +304,18 @@ miApp.factory(&#39;servicio&#39;, function() {
   <article>
    <p>Todo ocurre en una única página. ¿Qué hace el botón atras?</p>
 
-  <pre class="prettyprint" data-lang="angular">var pizzasApp = angular.module(&#39;pizzasApp&#39;, [&#39;ngRoute&#39;, &#39;controladorPedido&#39;]);
+  <pre class="prettyprint" data-lang="angular">var pizzasApp = angular.module(&#39;pizzasApp&#39;, [&#39;ngRoute&#39;]);
 
 pizzasApp.config([&#39;$routeProvider&#39;,
   function($routeProvider) {
     $routeProvider.
       when(&#39;/pedido&#39;, {
         templateUrl: &#39;views/pedido.html&#39;,
-        controller: &#39;PedidoPizzas&#39;
+        controller: &#39;controladorPedido&#39;
+      }).
+      when(&#39;/pedidos&#39;, {
+        templateUrl: &#39;views/pedidos.html&#39;,
+        controller: &#39;controladorPedidos&#39;
       }).
       otherwise({
         redirectTo: &#39;/pedido&#39;
@@ -332,8 +337,6 @@ pizzasApp.config([&#39;$routeProvider&#39;,
 <li>Desacopla la manipulación DOM de aplicación lógica. Esto mejora dramáticamente la capacidad de prueba del código.</li>
 
 <li>Desacopla el lado del cliente de una aplicación desde el lado del servidor. Esto permite que el trabajo de desarrollo para avanzar en paralelo, y permite la reutilización de ambos lados.</li>
-
-<li>Facilita el testing de la aplicación. </li>
 
 <li>Permite ser utilizado con otras librerías de JS (como jQuery)</li>
 
