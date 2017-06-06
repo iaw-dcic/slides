@@ -159,25 +159,26 @@ var SLIDE_CONFIG = {
     <h2>Vista</h2>
   </hgroup>
   <article>
-<pre class="prettyprint" data-lang="angular">&lt;div ng-controller=&quot;ControladorPedido as pedido&quot;&gt;
-    &lt;div&gt;
+<pre class="prettyprint" data-lang="angular">&lt;div class=&quot;menu&quot; ng-controller=&quot;controladorPedido as pedido&quot;&gt;
+    &lt;div class=&quot;calculo&quot;&gt;
         &lt;input class=&quot;filtro&quot; type=&quot;text&quot; data-ng-model=&quot;filtro&quot;/&gt;
-        &lt;span class=&quot;total&quot;&gt;Total: &lt;span&gt;{{pedido.total() | currency}}&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&quot;total&quot;&gt;Total: &lt;span&gt;{{total() | currency}}&lt;/span&gt;&lt;/span&gt;
     &lt;/div&gt;
-    &lt;table&gt;
-        &lt;tbody&gt;
-          &lt;tr ng-repeat=&quot;pizza in pedido.todos() | orderBy:&#39;tipo&#39; | filter:filtro&quot;&gt;
-            &lt;td&gt;
-                &lt;img ng-click=&quot;pedido.add(pizza)&quot; src=&quot;images/plus.svg&quot; class=&quot;svgicon&quot;/&gt;
-                &lt;input ng-model=&quot;pizza.cantidad&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;15&quot;&gt;
-                &lt;img ng-click=&quot;pedido.remove(pizza)&quot; src=&quot;images/minus.svg&quot; class=&quot;svgicon&quot;/&gt;
-            &lt;/td&gt;
-            &lt;td&gt;{{pizza.nombre}}&lt;/td&gt;
-            &lt;td&gt;{{pizza.tipo}}&lt;/td&gt;
-            &lt;td&gt;{{pizza.precio | currency}}&lt;/td&gt;
-          &lt;/tr&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
+    &lt;table id=&quot;tabla&quot;&gt; &lt;tbody&gt;
+      &lt;tr ng-repeat=&quot;pizza in pizzas() | orderBy:&#39;tipo&#39; | filter:filtro&quot;&gt;
+        &lt;td&gt;
+          &lt;img ng-click=&quot;add(pizza)&quot; src=&quot;images/plus.svg&quot; class=&quot;svgicon&quot;&gt;&lt;/img&gt;   
+          &lt;input ng-model=&quot;pizza.cantidad&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;15&quot;&gt;
+          &lt;img ng-click=&quot;remove(pizza)&quot; src=&quot;images/minus.svg&quot; class=&quot;svgicon&quot;&gt;&lt;/img&gt; 
+        &lt;/td&gt;
+        &lt;td&gt;{{pizza.nombre}}&lt;/td&gt;
+        &lt;td&gt;{{pizza.tipo}}&lt;/td&gt;
+        &lt;td&gt;{{pizza.precio | currency}}&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt; &lt;/table&gt;
+    &lt;div class=&quot;row&quot; ng-hide=&quot;vacio()&quot;&gt;
+        &lt;button ng-click=&quot;pedir()&quot;&gt;Pedir&lt;/button&gt;
+    &lt;/div&gt;
 &lt;/div&gt;</pre>
   </article>
 </slide>
@@ -213,21 +214,21 @@ var SLIDE_CONFIG = {
     <h2>Controladores</h2>
   </hgroup>
   <article >
-    <pre class="prettyprint" data-lang="angular">pizzasApp.controller(&#39;controladorPedido&#39;, 
-    [&#39;datos&#39;, &#39;$location&#39;, function(datos, $location) {
-
-  var pedido = this;
-  pedido.todos = datos.pedido;
-  pedido.pedir = datos.pedir;
-  pedido.add = function(pizza) {
-    if (pizza.cantidad&lt;15) pizza.cantidad++;
+    <pre class="prettyprint" data-lang="angular">pizzasApp.controller(&#39;controladorPedido&#39;, [&#39;$scope&#39;, &#39;datos&#39;, &#39;$location&#39;, 
+    function($scope, datos, $location) {
+  $scope.pizzas = datos.pedido;
+  $scope.pedir = datos.pedir;
+  $scope.add = function(pizza) {
+    if (pizza.cantidad&lt;15)
+      pizza.cantidad++;
   };
-  pedido.remove = function(pizza) {
-    if (pizza.cantidad&gt;0) pizza.cantidad--;
+  $scope.remove = function(pizza) {
+    if (pizza.cantidad&gt;0)
+      pizza.cantidad--;
   };
-  pedido.total = function() {
+  $scope.total = function() {
     var total = 0;
-    angular.forEach(pedido.todos(), function(pizza) {
+    angular.forEach(datos.pedido(), function(pizza) {
       total += pizza.cantidad * pizza.precio;
     });
     return total;
