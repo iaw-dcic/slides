@@ -1,0 +1,439 @@
+<script>
+var SLIDE_CONFIG = {
+  // Slide settings
+  settings: {
+    name: 'nodejs',
+    title: 'Introducción a NodeJS',
+   eventInfo: {
+     title: 'Clase Práctica 4',
+     date: '19/04/2018'
+   },
+    useBuilds: true, // Default: true. False will turn off slide animation builds.
+    usePrettify: true, // Default: true
+    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
+    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
+    //analytics: 'UA-XXXXXXXX-1', // TODO: Using this breaks GA for some reason (probably requirejs). Update your tracking code in template.html instead.
+    favIcon: 'images/logo-dcic.png',
+    fonts: [
+      'Open Sans:regular,semibold,italic,italicsemibold',
+      'Source Code Pro'
+    ],
+    //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
+  },
+
+  // Author information
+  presenters: [{
+    name: 'Mariano Tucat',
+    company: 'DCIC - Universidad Nacional del Sur',
+    gplus: 'https://www.google.com/+MarianoTucat',
+    twitter: '@eltucky',
+    www: 'http://cs.uns.edu.ar/~mt/',
+    github: 'http://github.com/MarianoTucat'
+  }]
+};
+</script>
+
+
+
+
+<slide>
+  <hgroup>
+    <h2>¿Qué es NodeJS?</h2>
+  </hgroup>
+  <article class="bigger">
+    <p>NodeJS es una plataforma de software que permite crear un servidor web propio y construir aplicaciones web por sobre el mismo</p>
+    <p>NodeJS no es en sí mismo un servidor web, tampoco es un lenguaje.</p>
+    <p>Contiene de manera nativa un librería de servidor HTTP</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Ventajas de NodeJS</h2>
+  </hgroup>
+  <article class="bigger">
+    <p>JavaScript como único lenguaje</p>
+    <p>Simple, eficiente y escalable</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Servidor Tradicional: Multi-Threaded</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="500px" src="images/multithreaded.png" alt="Multi-Threaded" title="Multi-Threaded">
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Servidor NodeJS: Single-Threaded</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="500px" src="images/singlethreaded.png" alt="Single-Threaded" title="Single-Threaded">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Express: El framework</h2>
+  </hgroup>
+  <article class="bigger">
+    <p>NodeJS nos provee la plataforma, pero no nos restringe a cómo configurar o usar la misma.</p>
+    <p>Express es el framework de aplicaciones web para NodeJS que ha sido diseñado para hacerlo.</p>
+    <p>
+      <ul class="build">
+        <li>Fácil de configurar: requerimientos y respuestas, estructura de directorio, archivos estáticos</li>
+        <li>Rutas URL a respuestas</li>
+        <li>Vistas: respuestas HTML</li>
+        <li>Manejo de Sessiones</li>
+      </ul>
+    </p>
+    <p></p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Estructura de una aplicación NodeJS</h2>
+  </hgroup>
+  <article>
+<pre class="prettyprint" data-lang="json">{
+  &quot;name&quot;: &quot;nodejs&quot;,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;private&quot;: true,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node ./bin/www&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;cookie-parser&quot;: &quot;~1.4.3&quot;,
+    &quot;debug&quot;: &quot;~2.6.9&quot;,
+    &quot;express&quot;: &quot;~4.16.0&quot;,
+    &quot;http-errors&quot;: &quot;~1.6.2&quot;,
+    &quot;morgan&quot;: &quot;~1.9.0&quot;,
+    &quot;pug&quot;: &quot;2.0.0-beta11&quot;
+  }
+}</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>NPM: Node Package Manager</h2>
+  </hgroup>
+  <article class="build">
+    <p>Manejo de versiones: ~4.16.0
+      <ul class="build">
+        <li>Versión Principal (4)</li>
+        <li>Versión Menor (16)</li>
+        <li>Versión Patch (0)</li>
+        <li>~ es como reemplazar la versión patch por *</li>
+        <li>^ es como reemplazar la versión menor por *</li>
+      </ul>
+    </p>
+    <p>Agregar paquetes
+      <pre class="prettyprint" data-lang="terminal">npm install --save package-name</pre>
+    </p>
+    <p>Actualizar paquetes
+      <pre class="prettyprint" data-lang="terminal">npm install</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>NPM: Node Package Manager</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="700px" src="images/npm.png" alt="Node Package Manager" title="Node Package Manager">
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Instalacción</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>NodeJS y NPM: 
+      <a href="https://nodejs.org/download/">Descargar</a></p>
+    <p>Express Generator:
+      <pre class="prettyprint" data-lang="terminal">npm install -g express-generator</pre>
+    </p>
+    <p>Confirmar que esta todo listo con:
+        <pre class="prettyprint" data-lang="terminal">node --version
+npm --version
+express --version</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Crear y probar la cáscara de la aplicación</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Express: 
+      <pre class="prettyprint" data-lang="terminal">express</pre>
+    <p>Express personalizado:
+      <pre class="prettyprint" data-lang="terminal">express --view=pug --git</pre>
+    </p>
+    <p>Correr la aplicación:
+        <pre class="prettyprint" data-lang="terminal">DEBUG=nodejs:* npm start</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Manejo de requerimientos por Express</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="670px" src="images/request.png" alt="Express" title="Express">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Nodemon</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Utilidad que monitorea el código fuente por cambios y automáticamente reinicia el servidor. 
+      <pre class="prettyprint" data-lang="terminal">npm install -g nodemon</pre>
+    <p>Ejecución:
+      <pre class="prettyprint" data-lang="terminal">nodemon</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Arquitectura MVC de la aplicación</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="700px" src="images/mvc.png" alt="MVC" title="MVC">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Reestructurar la arquitectura MVC</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="700px" src="images/estructura.png" alt="MVC" title="MVC">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Reestructurar la arquitectura MVC</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Vistas
+      <pre class="prettyprint" data-lang="nodejs">app.set('views', path.join(__dirname, 'app_server', 'views'));</pre>
+    <p>Rutas
+      <pre class="prettyprint" data-lang="nodejs">const indexRouter = require('./app_server/routes/index');</pre>
+      <pre class="prettyprint" data-lang="nodejs">const usersRouter = require('./app_server/routes/users');</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Rutas y Controladores</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>
+      <pre class="prettyprint" data-lang="nodejs">/* GET home page. */
+router.get('/', function(req, res) {
+&nbsp; res.render('index', { title: 'Express' });
+});</pre>
+    </p>
+    <p>
+      <pre class="prettyprint" data-lang="nodejs">const homepageController = function (req, res) {&nbsp;
+&nbsp; res.render('index', { title: 'Express' });
+};
+/* GET home page. */
+router.get('/', homepageController);</pre>
+    </p>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Controlador Principal</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>app_server/controlers/main.js
+      <pre class="prettyprint" data-lang="nodejs">/* GET home page. */
+const index = function (req, res) {&nbsp;
+&nbsp; res.render('index', { title: 'Express' });
+};
+
+module.exports = {
+&nbsp; index
+}</pre>
+</p>
+    <p>app_server/routes/index.js
+      <pre class="prettyprint" data-lang="nodejs">const ctrlMain = require('../controllers/main');
+/* GET home page. */
+router.get('/', ctrlMain.index);</pre></p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Separación de Rutas y Controladores</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="700px" src="images/controller.png" alt="MVC" title="MVC">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Plantillas Pug</h2>
+  </hgroup>
+  <article class="bigger">
+    <p>layout.pug</p>
+    <img width="700px" src="images/layout.png" alt="Layout" title="Layout">
+    <p></p>
+    <p>index.pug</p>
+    <img width="300px" src="images/index.png" alt="Index" title="Index">
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Plantillas Pug: Modificando el layout</h2>
+  </hgroup>
+  <article class="bigger">
+    <p><pre class="prettyprint" data-lang="pug">doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/estilo.css', type='text/css', id='cssRef')
+  body
+    block content
+    script(src='https://code.jquery.com/jquery-3.1.1.slim.min.js')
+    script(src='javascripts/js.js')</pre></p>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Plantillas Pug: Modificando el index</h2>
+  </hgroup>
+  <article class="bigger">
+    <p><pre  class="prettyprint" data-lang="pug">extends layout
+
+block content
+  .container
+    .titulo
+      h1= title
+    .menu
+      table#tabla
+        tr
+          th Comprar
+          th Pizzas
+          th Precio
+    .calculo
+      span.total Total: $
+        span#total 0.00</pre></p>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2>Listas y Mixins</h2>
+  </hgroup>
+  <article class="bigger">
+    <p>app_server/views/shared/HTMLfunctions.pug
+      <pre class="prettyprint" data-lang="pug">mixin outputPizza(pizza)
+  tr(onclick= "actualizarPedido(event)")
+    td
+      input(type= "checkbox")
+    td= pizza.nombre
+    td= pizza.precio
+</pre>
+    </p>
+    <p>app_server/views/index.pug
+      <pre class="prettyprint" data-lang="pug">include shared/HTMLfunctions
+...
+each pizza in pizzas
+  +outputPizza(pizza)
+    </pre></p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Controlador</h2>
+  </hgroup>
+  <article class="bigger">
+    <p>app_server/controllers/main.js
+      <pre class="prettyprint" data-lang="nodejs">res.render('index', { title: 'Sal\'s Pizza v4',
+  pizzas: [
+      {
+          "nombre": "Fugazzeta",
+          "precio": 200,
+          "tipo" : "clásicas"
+      }, 
+      ...,
+      {
+          "nombre": "Ciervo Ahumado",
+          "precio": 250,
+          "tipo" : "especiales"
+      }]
+});
+</pre></p>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2></h2>
+  </hgroup>
+  <article class="bigger">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2></h2>
+  </hgroup>
+  <article class="bigger">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2></h2>
+  </hgroup>
+  <article class="bigger">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </article>
+</slide>
+<slide>
+  <hgroup>
+    <h2></h2>
+  </hgroup>
+  <article class="bigger">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </article>
+</slide>
+
+
+</slide>
+
+
+
