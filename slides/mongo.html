@@ -1,0 +1,429 @@
+<script>
+var SLIDE_CONFIG = {
+  // Slide settings
+  settings: {
+    name: 'mongo',
+    title: 'Introducción a Mongo',
+   eventInfo: {
+     title: 'Clase Práctica 6',
+     date: '26/04/2018'
+   },
+    useBuilds: true, // Default: true. False will turn off slide animation builds.
+    usePrettify: true, // Default: true
+    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
+    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
+    //analytics: 'UA-XXXXXXXX-1', // TODO: Using this breaks GA for some reason (probably requirejs). Update your tracking code in template.html instead.
+    favIcon: 'images/logo-dcic.png',
+    fonts: [
+      'Open Sans:regular,semibold,italic,italicsemibold',
+      'Source Code Pro'
+    ],
+    //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
+  },
+
+  // Author information
+  presenters: [{
+    name: 'Mariano Tucat',
+    company: 'DCIC - Universidad Nacional del Sur',
+    gplus: 'https://www.google.com/+MarianoTucat',
+    twitter: '@eltucky',
+    www: 'http://cs.uns.edu.ar/~mt/',
+    github: 'http://github.com/MarianoTucat'
+  }]
+};
+</script>
+
+
+
+
+<slide>
+  <hgroup>
+    <h2>¿Qué es MongoDB?</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>MongoDB es una base de datos de documentos.</p>
+    <p>Existe el concepto de fila, al igual que en el modelo relacional, pero no el de columna.</p>
+    <p>Este esqume menos estructurado permite mayor flexibilidad y variedad en la información a almacenar.</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Cómo es MongoDB?</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>MongoDB almacena documentos en formato BSON, es decir, JSON Binario.</p>
+    <p>
+      <pre class="prettyprint" data-lang="json">{
+  "nombre" : "Muzzarela y Jamón",
+  "precio" : "150",
+  _id : ObjectId("52279effc62ca8b0c1000007")
+}</pre>
+    </p>
+    <p>MongoDB permite definir indices secundarios y consultas complejas.</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>¿Qué NO es MongoDB?</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>MongoDB no es una base de datos relacional, y no debe usarse como tal.</p>
+    <p>MongoDB no tiene el concepto de transaccion, para agrupar operaciones y que se ejecuten de manera atómica.</p>
+    <p>Para este tipo de necesidades, o bien se ajusta la estructura de datos, o se implementa en código el funcionamiento deseado.</p>
+  </article>
+</slide>
+ 
+<slide>
+  <hgroup>
+    <h2>Modelado de datos con Mongoose</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>La mayoría de las aplicaciones necesitan estructurar sus datos, mongoose permite definir dicha estructura en el código de la aplicación.</p>
+    <p>Mongoose fue creado por el mismo creado de MongoDB.</p>
+    <p>Mongoose permite definir qué puede ser almacenado y qué debe ser almacenado.</p>
+    <p>Mongoose también permite definir validaciones de datos junto con el esquema, para asegurarse que sólo datos válidos son almacenados en la base de datos.</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Próximos pasos</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Conectar la aplicación a la base de datos.</p>
+    <p>Definir los esquemas de nuestros modelos</p>
+    <p>Agregar datos a la base de datos</p>
+    <p>Usar los datos en nuestra apliación</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Esquema general</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="700px" src="images/mongo.png" alt="Mongo" title="Mongo">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Mongoose</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="700px" src="images/mongoose.png" alt="Mongoose" title="Mongoose">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Agregando Mongoose</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p><pre class="prettyprint" data-lang="terminal">npm install --save mongoose</pre></p>
+    <p>archivo db.js en app_server/models
+      <pre class="prettyprint" data-lang="nodejs">const mongoose = require('mongoose');</pre></p>
+    <p><img width="700px" src="images/dbconn.png" alt="Mongoose" title="Mongoose"></p>
+    <p><pre class="prettyprint" data-lang="nodejs">const dbURI = 'mongodb://localhost/sols';
+mongoose.connect(dbURI);</pre></p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Esquemas Mongoose</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="700px" src="images/collections.png" alt="Mongoose" title="Mongoose">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Esquemas Mongoose</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="700px" src="images/paths.png" alt="Mongoose" title="Mongoose">
+    <p>Tipos: String, Number, Date, Boolean, Buffer, Mixed, Array, ObjectId</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Ejemplo de Esquema 1</h2>
+  </hgroup>
+  <article>
+    <p>archivo pizzas.js en app_server/models
+      <pre class="prettyprint" data-lang="json">const mongoose = require('mongoose');
+
+const pizzaSchema = new mongoose.Schema({
+  nommbre: {
+    type: String,
+    required: true
+  },
+  tipo: {
+    type: String,
+    required: true
+  },
+  precio: Number
+});
+
+mongoose.model('Pizza', pizzaSchema);</pre></p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Ejemplo de Esquema 2</h2>
+  </hgroup>
+  <article>
+<pre class="prettyprint" data-lang="json">const locationSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  address: String,
+  rating: {
+    type: Number,
+    'default': 0,
+    min: 0,
+    max: 5
+  },
+  facilities: [String],
+  coords: {
+    type: [Number],
+    index: '2dsphere'
+  }
+});</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Subdocumentos</h2>
+  </hgroup>
+  <article class="bigger" style="text-align: center" >
+    <img width="700px" src="images/subdocumentos.png" alt="Mongoose" title="Mongoose">
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Ejemplo de Esquema con Subdocumentos</h2>
+  </hgroup>
+  <article>
+<pre class="prettyprint" data-lang="json">const openingTimeSchema = new mongoose.Schema({
+  days: {
+    type: String,
+    required: true
+  },
+  opening: String,
+  closing: String,
+  closed: {
+    type: Boolean,
+    required: true
+  }
+});</pre>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Ejemplo de Esquema con Subdocumentos</h2>
+  </hgroup>
+  <article>
+<pre class="prettyprint" data-lang="json">const locationSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  address: String,
+  rating: {
+    type: Number,
+    'default': 0,
+    min: 0,
+    max: 5
+  },
+  facilities: [String],
+  coords: {
+    type: [Number],
+    index: '2dsphere'
+  },
+  openingTimes: [openingTimeSchema]
+});</pre>
+  </article>
+</slide>
+
+
+
+<slide>
+  <hgroup>
+    <h2>Terminal MongoDB</h2>
+  </hgroup>
+  <article class="build">
+    <p><pre class="prettyprint" data-lang="terminal">mongo</pre></p>
+    <p>mostrar bases de datos:
+      <pre class="prettyprint" data-lang="terminal">show dbs</pre></p>
+    <p>seleccionar base de datos:
+      <pre class="prettyprint" data-lang="terminal">use local</pre>
+    </p>
+    <p>mostrar colecciones
+      <pre class="prettyprint" data-lang="terminal">show collections</pre>
+    </p>
+    <p>mostrar contenido de colecciones
+      <pre class="prettyprint" data-lang="terminal">db.startup_log.find()</pre>
+      <pre class="prettyprint" data-lang="terminal">db.startup_log.find().pretty()</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Crear dase de datos</h2>
+  </hgroup>
+  <article class="build">
+    <p>crear base de datos:
+      <pre class="prettyprint" data-lang="terminal">use sols</pre>
+    </p>
+    <p>agregar documentos a una colección
+      <pre class="prettyprint" data-lang="terminal">db.pizzas.save({"nombre": "Fugazzeta", 
+      "precio": 150, 
+      "tipo": "clásicas"})</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Agregar subdocumentos</h2>
+  </hgroup>
+  <article class="build">
+    <p>agregar subdocumentos
+      <pre class="prettyprint" data-lang="terminal">db.locations.update({                   
+  name: 'Starcups'                         
+}, {
+  $push: {
+  openingTimes: {
+      _id: ObjectId(),                     
+      days: "Monday - Friday",
+      opening: "7:00am",
+      closing: "7:00pm",
+      closed: false
+    }
+  }
+})</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Acceder a la información desde NodeJS</h2>
+  </hgroup>
+  <article class="build">
+    <p>modificando main.js en app_server/controllers 
+      <pre class="prettyprint" data-lang="terminal">vconst mongoose = require('mongoose');
+const Pizza = mongoose.model('Pizza');
+
+/* GET home page */
+const index = function(req, res) {
+  Pizza
+    .find()
+    .exec((err, pizzas) => {
+      if (err) { 
+        res.redner('error', { 
+          error : err
+        });    
+          } else {
+        res.render('index', {
+          title: 'Sal\'s Pizza v4-twig', 
+          pizzas: pizzas 
+        });
+      }
+    })
+};
+
+module.exports = {
+  index
+}; 
+</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Acceder a la información desde NodeJS</h2>
+  </hgroup>
+  <article class="build">
+    <p>archivo pizzaAPI.js en app_server/controllers 
+      <pre class="prettyprint" data-lang="terminal">const mongoose = require('mongoose');
+const Pizza = mongoose.model('Pizza');
+
+const getPizzas = function (req, res) {
+  Pizza
+    .find()
+    .exec((err, pizzas) => {
+      if (err) { 
+        res
+          .status(404)
+          .json(err);    
+          } else {
+        res
+          .status(200)
+          .json(pizzas);
+      }
+    })
+}
+
+module.exports = {
+  getPizzas
+};</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Acceder a la información desde NodeJS</h2>
+  </hgroup>
+  <article class="build">
+    <p>archivo api.js en app_server/routes 
+      <pre class="prettyprint" data-lang="terminal">var express = require('express');
+var router = express.Router();
+const pizzaApi = require('../controllers/pizzaApi');
+
+/* GET home page. */
+router.get('/pizzas', pizzaApi.getPizzas);
+
+module.exports = router;
+</pre>
+    </p>
+    <p>actualizar app.js agregando 
+      <pre class="prettyprint" data-lang="terminal">const apiRouter = require('./app_server/routes/api');</pre>
+      <pre class="prettyprint" data-lang="terminal">app.use('/api', apiRouter);</pre>
+    </p>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Referencias</h2>
+  </hgroup>
+  <article class="bigger">
+    <p><a href="https://www.mongodb.com/">MongoDB</a></p>
+    <p><a href="http://mongoosejs.com/">Mongoose</a></p>
+    <p><a href="http://mongoosejs.com/docs/guide.html">Mongoose Doc</a></p>
+    <p><a href="https://docs.mongodb.com/manual/core/2dsphere/">2dsphere Indexes</a></p>
+    <p><a href="http://geojson.org/">GeoJSON</a></p>
+    <p><a href="https://docs.mongodb.com/manual/geospatial-queries/#geospatial-geojson">Geospatial Queries</a></p>
+    <p><a href="https://www.manning.com/books/getting-mean-with-mongo-express-angular-and-node-second-edition">
+    Getting MEAN with Mongo, Express, Angular, and Node, Second Edition</a></p>
+  </article>
+</slide>
+
+
+
