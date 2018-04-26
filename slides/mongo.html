@@ -3,7 +3,7 @@ var SLIDE_CONFIG = {
   // Slide settings
   settings: {
     name: 'mongo',
-    title: 'Introducción a Mongo',
+    title: 'Introducción a MongoDB',
    eventInfo: {
      title: 'Clase Práctica 6',
      date: '26/04/2018'
@@ -43,13 +43,13 @@ var SLIDE_CONFIG = {
   <article class="bigger build">
     <p>MongoDB es una base de datos de documentos.</p>
     <p>Existe el concepto de fila, al igual que en el modelo relacional, pero no el de columna.</p>
-    <p>Este esqume menos estructurado permite mayor flexibilidad y variedad en la información a almacenar.</p>
+    <p>Este esqueme menos estructurado permite mayor flexibilidad y variedad en la información a almacenar.</p>
   </article>
 </slide>
 
 <slide>
   <hgroup>
-    <h2>Cómo es MongoDB?</h2>
+    <h2>¿Cómo es MongoDB?</h2>
   </hgroup>
   <article class="bigger build">
     <p>MongoDB almacena documentos en formato BSON, es decir, JSON Binario.</p>
@@ -69,8 +69,8 @@ var SLIDE_CONFIG = {
     <h2>¿Qué NO es MongoDB?</h2>
   </hgroup>
   <article class="bigger build">
-    <p>MongoDB no es una base de datos relacional, y no debe usarse como tal.</p>
-    <p>MongoDB no tiene el concepto de transaccion, para agrupar operaciones y que se ejecuten de manera atómica.</p>
+    <p>MongoDB no es una base de datos relacional y, por lo tanto, no debe usarse como tal.</p>
+    <p>MongoDB no tiene el concepto de transacción para agrupar operaciones y que se ejecuten de manera atómica.</p>
     <p>Para este tipo de necesidades, o bien se ajusta la estructura de datos, o se implementa en código el funcionamiento deseado.</p>
   </article>
 </slide>
@@ -81,8 +81,8 @@ var SLIDE_CONFIG = {
   </hgroup>
   <article class="bigger build">
     <p>La mayoría de las aplicaciones necesitan estructurar sus datos, mongoose permite definir dicha estructura en el código de la aplicación.</p>
-    <p>Mongoose fue creado por el mismo creado de MongoDB.</p>
-    <p>Mongoose permite definir qué puede ser almacenado y qué debe ser almacenado.</p>
+    <p>Mongoose fue creado por el mismo creador de MongoDB.</p>
+    <p>Mongoose permite definir qué <b>puede</b> ser almacenado y qué <b>debe</b> ser almacenado.</p>
     <p>Mongoose también permite definir validaciones de datos junto con el esquema, para asegurarse que sólo datos válidos son almacenados en la base de datos.</p>
   </article>
 </slide>
@@ -104,7 +104,7 @@ var SLIDE_CONFIG = {
     <h2>Esquema general</h2>
   </hgroup>
   <article class="bigger" style="text-align: center" >
-    <img width="700px" src="images/mongo.png" alt="Mongo" title="Mongo">
+    <img width="650px" src="images/mongo.png" alt="Mongo" title="Mongo">
   </article>
 </slide>
 
@@ -156,7 +156,7 @@ mongoose.connect(dbURI);</pre></p>
   </hgroup>
   <article>
     <p>archivo pizzas.js en app_server/models
-      <pre class="prettyprint" data-lang="json">const mongoose = require('mongoose');
+      <pre class="prettyprint" data-lang="nodejs">const mongoose = require('mongoose');
 
 const pizzaSchema = new mongoose.Schema({
   nommbre: {
@@ -179,7 +179,7 @@ mongoose.model('Pizza', pizzaSchema);</pre></p>
     <h2>Ejemplo de Esquema 2</h2>
   </hgroup>
   <article>
-<pre class="prettyprint" data-lang="json">const locationSchema = new mongoose.Schema({
+<pre class="prettyprint" data-lang="nodejs">const locationSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -200,6 +200,56 @@ mongoose.model('Pizza', pizzaSchema);</pre></p>
   </article>
 </slide>
 
+
+<slide>
+  <hgroup>
+    <h2>Relaciones 1 a muchos</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Será necesario acceder al elemento de la relación de manera aislada?</p>
+    <p>Determinar la cardinalidad de la relación:</p>
+    <p>1 a pocos</p>
+    <p>1 a muchos (cientos)</p>
+    <p>1 a milliones</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Relaciones 1 a muchos: diseños básicos</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Incluir los elementos si la cardinalidad es uno a pocos y no hay necesidad de acceder a esos datos fuera el contexto de la relación.</p>
+    <p>Usar un arreglo de referencias a los N objetos si la cardinalidad es uno a muchos, o si los N elementos deben ser accedidos de manera aislada</p>
+    <p>Cuando la cardinalidad de 1 a millones, incluir la referencia de la relación en los N elementos</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Relaciones 1 a muchos: alternativas avanzadas</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Incluir las referencias en los dos elementos.</p>
+    <p>Desnormalizar la referencia, agregando datos en la parte 1 o la parte N de la referencia</p>
+    <p>Cuando la cardinalidad de 1 a millones, incluir la referencia de la relación en los N elementos</p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Relaciones 1 a muchos: Reglas generales</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>1) Favorecer la inclusión (embed) a menos que haya una razón de peso para no.</p>
+    <p>2) La necesidad de acceder a un objeto por sí misma es una razón de peso para no incluirlo (embed)</p>
+    <p>3) Los arreglos no deben crecer de manera ilimitada. Los arreglos de alta cardinalidad son una razón convincente para no incrustar.</p>
+    <p>4) No temer a las uniones a nivel de aplicación: si se indexa correctamente y utiliza una proyección adecuada, las combinaciones de nivel de aplicación son apenas más caras que las que se hacen en un servidor en una base de datos relacional.</p>
+    <p>5) Considere la relación de escritura / lectura cuando se desnormaliza. Un campo que se leerá principalmente y que rara vez se actualiza es un buen candidato para la desnormalización: si desnormaliza un campo que se actualiza con frecuencia, es probable que el trabajo extra de encontrar y actualizar todas las instancias desborde los ahorros que obtiene de la desnormalización.</p>
+    <p>6) La forma de modelar sus datos depende, por completo, de los patrones de acceso a los datos de su aplicación en particular.</p>
+  </article>
+</slide>
+
 <slide>
   <hgroup>
     <h2>Subdocumentos</h2>
@@ -214,7 +264,7 @@ mongoose.model('Pizza', pizzaSchema);</pre></p>
     <h2>Ejemplo de Esquema con Subdocumentos</h2>
   </hgroup>
   <article>
-<pre class="prettyprint" data-lang="json">const openingTimeSchema = new mongoose.Schema({
+<pre class="prettyprint" data-lang="nodejs">const openingTimeSchema = new mongoose.Schema({
   days: {
     type: String,
     required: true
@@ -234,7 +284,7 @@ mongoose.model('Pizza', pizzaSchema);</pre></p>
     <h2>Ejemplo de Esquema con Subdocumentos</h2>
   </hgroup>
   <article>
-<pre class="prettyprint" data-lang="json">const locationSchema = new mongoose.Schema({
+<pre class="prettyprint" data-lang="nodejs">const locationSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -264,15 +314,12 @@ mongoose.model('Pizza', pizzaSchema);</pre></p>
   </hgroup>
   <article class="build">
     <p><pre class="prettyprint" data-lang="terminal">mongo</pre></p>
-    <p>mostrar bases de datos:
-      <pre class="prettyprint" data-lang="terminal">show dbs</pre></p>
-    <p>seleccionar base de datos:
+    <p>mostrar y seleccionar bases de datos:
+      <pre class="prettyprint" data-lang="terminal">show dbs</pre>
       <pre class="prettyprint" data-lang="terminal">use local</pre>
     </p>
-    <p>mostrar colecciones
+    <p>mostrar colecciones y contenido
       <pre class="prettyprint" data-lang="terminal">show collections</pre>
-    </p>
-    <p>mostrar contenido de colecciones
       <pre class="prettyprint" data-lang="terminal">db.startup_log.find()</pre>
       <pre class="prettyprint" data-lang="terminal">db.startup_log.find().pretty()</pre>
     </p>
@@ -324,19 +371,16 @@ mongoose.model('Pizza', pizzaSchema);</pre></p>
   </hgroup>
   <article class="build">
     <p>modificando main.js en app_server/controllers 
-      <pre class="prettyprint" data-lang="terminal">vconst mongoose = require('mongoose');
+      <pre class="prettyprint" data-lang="terminal">const mongoose = require('mongoose');
 const Pizza = mongoose.model('Pizza');
 
-/* GET home page */
 const index = function(req, res) {
   Pizza
     .find()
     .exec((err, pizzas) => {
       if (err) { 
-        res.redner('error', { 
-          error : err
-        });    
-          } else {
+        res.render('error', { error : err });    
+      } else {
         res.render('index', {
           title: 'Sal\'s Pizza v4-twig', 
           pizzas: pizzas 
@@ -345,9 +389,7 @@ const index = function(req, res) {
     })
 };
 
-module.exports = {
-  index
-}; 
+module.exports = { index }; 
 </pre>
     </p>
   </article>
@@ -367,20 +409,14 @@ const getPizzas = function (req, res) {
     .find()
     .exec((err, pizzas) => {
       if (err) { 
-        res
-          .status(404)
-          .json(err);    
-          } else {
-        res
-          .status(200)
-          .json(pizzas);
+        res.status(404).json(err);    
+      } else {
+        res.status(200).json(pizzas);
       }
     })
 }
 
-module.exports = {
-  getPizzas
-};</pre>
+module.exports = { getPizzas };</pre>
     </p>
   </article>
 </slide>
@@ -420,6 +456,7 @@ module.exports = router;
     <p><a href="https://docs.mongodb.com/manual/core/2dsphere/">2dsphere Indexes</a></p>
     <p><a href="http://geojson.org/">GeoJSON</a></p>
     <p><a href="https://docs.mongodb.com/manual/geospatial-queries/#geospatial-geojson">Geospatial Queries</a></p>
+    <p><a href="https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1">Reglas de Diseño en MongoDB</a></p>
     <p><a href="https://www.manning.com/books/getting-mean-with-mongo-express-angular-and-node-second-edition">
     Getting MEAN with Mongo, Express, Angular, and Node, Second Edition</a></p>
   </article>
