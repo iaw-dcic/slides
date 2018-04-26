@@ -232,7 +232,6 @@ mongoose.model('Pizza', pizzaSchema);</pre></p>
   <article class="bigger build">
     <p>Incluir las referencias en los dos elementos.</p>
     <p>Desnormalizar la referencia, agregando datos en la parte 1 o la parte N de la referencia</p>
-    <p>Cuando la cardinalidad de 1 a millones, incluir la referencia de la relación en los N elementos</p>
   </article>
 </slide>
 
@@ -245,7 +244,7 @@ mongoose.model('Pizza', pizzaSchema);</pre></p>
     <p>2) La necesidad de acceder a un objeto por sí misma es una razón de peso para no incluirlo (embed)</p>
     <p>3) Los arreglos no deben crecer de manera ilimitada. Los arreglos de alta cardinalidad son una razón convincente para no incrustar.</p>
     <p>4) No temer a las uniones a nivel de aplicación: si se indexa correctamente y utiliza una proyección adecuada, las combinaciones de nivel de aplicación son apenas más caras que las que se hacen en un servidor en una base de datos relacional.</p>
-    <p>5) Considere la relación de escritura / lectura cuando se desnormaliza. Un campo que se leerá principalmente y que rara vez se actualiza es un buen candidato para la desnormalización: si desnormaliza un campo que se actualiza con frecuencia, es probable que el trabajo extra de encontrar y actualizar todas las instancias desborde los ahorros que obtiene de la desnormalización.</p>
+    <p>5) Considere la relación de escritura / lectura cuando se desnormaliza. Un campo que se leerá principalmente y que rara vez se actualiza es un buen candidato para la desnormalización.</p>
     <p>6) La forma de modelar sus datos depende, por completo, de los patrones de acceso a los datos de su aplicación en particular.</p>
   </article>
 </slide>
@@ -371,7 +370,7 @@ mongoose.model('Pizza', pizzaSchema);</pre></p>
   </hgroup>
   <article class="build">
     <p>modificando main.js en app_server/controllers 
-      <pre class="prettyprint" data-lang="terminal">const mongoose = require('mongoose');
+      <pre class="prettyprint" data-lang="nodejs">const mongoose = require('mongoose');
 const Pizza = mongoose.model('Pizza');
 
 const index = function(req, res) {
@@ -388,7 +387,6 @@ const index = function(req, res) {
       }
     })
 };
-
 module.exports = { index }; 
 </pre>
     </p>
@@ -401,7 +399,7 @@ module.exports = { index }; 
   </hgroup>
   <article class="build">
     <p>archivo pizzaAPI.js en app_server/controllers 
-      <pre class="prettyprint" data-lang="terminal">const mongoose = require('mongoose');
+      <pre class="prettyprint" data-lang="nodejs">const mongoose = require('mongoose');
 const Pizza = mongoose.model('Pizza');
 
 const getPizzas = function (req, res) {
@@ -427,7 +425,7 @@ module.exports = { getPizzas };</pre>
   </hgroup>
   <article class="build">
     <p>archivo api.js en app_server/routes 
-      <pre class="prettyprint" data-lang="terminal">var express = require('express');
+      <pre class="prettyprint" data-lang="nodejs">var express = require('express');
 var router = express.Router();
 const pizzaApi = require('../controllers/pizzaApi');
 
@@ -438,8 +436,8 @@ module.exports = router;
 </pre>
     </p>
     <p>actualizar app.js agregando 
-      <pre class="prettyprint" data-lang="terminal">const apiRouter = require('./app_server/routes/api');</pre>
-      <pre class="prettyprint" data-lang="terminal">app.use('/api', apiRouter);</pre>
+      <pre class="prettyprint" data-lang="nodejs">const apiRouter = require('./app_server/routes/api');</pre>
+      <pre class="prettyprint" data-lang="nodejs">app.use('/api', apiRouter);</pre>
     </p>
   </article>
 </slide>
