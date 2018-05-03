@@ -1,0 +1,131 @@
+..<script>
+var SLIDE_CONFIG = {
+  // Slide settings
+  settings: {
+    name: 'heroku',
+    title: 'Heroku',
+   eventInfo: {
+     title: 'Clase Práctica 7',
+     date: '03/05/2018'
+   },
+    useBuilds: true, // Default: true. False will turn off slide animation builds.
+    usePrettify: true, // Default: true
+    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
+    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
+    //analytics: 'UA-XXXXXXXX-1', // TODO: Using this breaks GA for some reason (probably requirejs). Update your tracking code in template.html instead.
+    favIcon: 'images/logo-dcic.png',
+    fonts: [
+      'Open Sans:regular,semibold,italic,italicsemibold',
+      'Source Code Pro'
+    ],
+    //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
+  },
+
+  // Author information
+  presenters: [{
+    name: 'Mariano Tucat',
+    company: 'DCIC - Universidad Nacional del Sur',
+    gplus: 'https://www.google.com/+MarianoTucat',
+    twitter: '@eltucky',
+    www: 'http://cs.uns.edu.ar/~mt/',
+    github: 'http://github.com/MarianoTucat'
+  }]
+};
+</script>
+
+
+
+
+<slide>
+  <hgroup>
+    <h2>Heroku: Instalación</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Instalar <a href="https://devcenter.heroku.com/articles/heroku-cli#download-and-install">Heroku</a></p>
+    <p>Asegurarse que funcione:
+      <pre class="prettyprint" data-lang="terminal">heroku</pre>
+    </p>
+    <p>Loguearse:
+      <pre class="prettyprint" data-lang="terminal">heroku auth:login</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Actualizar el Proyecto</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Actualizar package.json agregando:
+      <pre class="prettyprint" data-lang="nodejs">"engines": {
+    "node": "^9.4.0",
+    "npm": "^5.6.0"
+  },</pre>
+    </p>
+    <p>Agregar el archivo procfile con el contenido:
+      <pre class="prettyprint" data-lang="nodejs">web: npm start</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Subirlo a Heroku</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Crear aplicación en Heroku:
+      <pre class="prettyprint" data-lang="terminal">heroku create</pre>
+    </p>
+    <p>Renonbrar la aplicación en Heroku:
+      <pre class="prettyprint" data-lang="terminal">heroku apps:rename salspizza</pre>
+    </p>
+    <p>Subir el código a Heroku:
+      <pre class="prettyprint" data-lang="terminal">git push heroku master</pre>
+      <pre class="prettyprint" data-lang="terminal">git push heroku branch:master</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>MLab: Hosting para Mongo </h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Registrarse en <a href="https://mlab.com/">MLab</a></p>
+    <p>crear base de datos</p>
+    <p>crear usuario</p>
+  </article>
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>MLab: Hosting para Mongo</h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Conectarse por terminal:
+      <pre class="prettyprint" data-lang="terminal">mongo ds113700.mlab.com:13700/&lt;db&gt; -u &lt;dbuser&gt; -p &lt;dbpassword&gt;</pre>
+    </p>
+    <p>Configurar la variable de entorno:
+      <pre class="prettyprint" data-lang="terminal">heroku config:set MLAB_URI=mongodb://&lt;dbuser&gt;:&lt;dbpassword&gt;@ds113700.mlab.com:13700/&lt;db&gt;</pre>
+    </p>
+    <p>Actualizar el código de conexión:
+      <pre class="prettyprint" data-lang="nodejs">const dbURI = process.env.MLAB_URI;</pre>
+    </p>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>MLab: Hosting para Mongo </h2>
+  </hgroup>
+  <article class="bigger build">
+    <p>Dump de la base de datos local
+      <pre class="prettyprint" data-lang="terminal">mongodump -h localhost:27017 -d &lt;db&gt;</pre>
+    </p>
+    <p>Restore en la base de datos en MLab
+      <pre class="prettyprint" data-lang="terminal">mongorestore -h ds113700.mlab.com:13700 -d &lt;db&gt; -u &lt;user&gt; -p &lt;pass&gt; dump/</pre>
+    </p>
+  </article>
+</slide>
+
