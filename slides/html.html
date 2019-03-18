@@ -2,12 +2,12 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    name: 'htmlcss',
-    title: 'HTML & CSS',
+    name: 'html',
+    title: 'HTML',
     subtitle: 'Ejemplos',
    eventInfo: {
      title: 'Clase Práctica 2',
-     date: '20/03/2018'
+     date: '19/03/2019'
    },
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
@@ -215,183 +215,6 @@ var SLIDE_CONFIG = {
   </article>
 </slide>
 
-
-
-<slide>
-  <hgroup>
-    <h2>Selectores CSS</h2>
-  </hgroup>
-  <article>
-      <pre class="prettyprint" data-lang="css">
-/* por elemento */
-p {
-    text-align: center;
-    padding: 10px; 
-}
-/* por id */
-#nav {
-    text-align: center;
-    padding: 10px; 
-}
-/* por class */
-.center {
-    text-align: center;
-    padding: 10px; 
-}
-      </pre>
-  </article>
-</slide>
-
-<slide>
-  <hgroup>
-    <h2>Como incorporar estilos CSS</h2>
-  </hgroup>
-  <article>
-      <pre class="prettyprint" data-lang="html">
-&lt;head&gt;
-  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;external.css&quot;&gt;
-
-  &lt;style&gt;
-    /* internal */
-    body {
-        background-color: linen;
-    }
-    h1 {
-        color: maroon;
-        margin-left: 40px;
-    } 
-  &lt;/style&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-  &lt;h1 style=&quot;color:blue; margin-left:30px;&quot;&gt;Inline&lt;/h1&gt;
-&lt;/body&gt;</pre>
-  </article>
-</slide>
-
-<slide>
-  <hgroup>
-    <h2>Ejemplos</h2>
-  </hgroup>
-  <article>
-    <ul>
-      <li><a href="http://iaw-dcic.github.io/html-css/selectors.html">Selectores CSS</a></li>
-      <li><a href="http://www.w3schools.com/css/demo_default.htm">Múltiples estilos, un HTML</a></li>
-    </ul>
-  </article>
-</slide>
-
-
-<slide>
-  <hgroup>
-    <h2>Layout con CSS</h2>
-  </hgroup>
-  <article>
-    <div id="header">
-      <h1>Título</h1>
-    </div>
-
-    <div id="nav">
-      <ol>
-        <li>Menu1</li>
-        <li>Menu2</li>
-        <li>Menu3</li>
-      </ol>
-    </div>
-
-    <div id="section">
-      <h1>Contenido 1</h1>
-    </div>
-
-    <div id="footer">
-      Pié de Página 
-    </div>
-  </article>
-</slide>
-<slide>
-  <hgroup>
-    <h2>Layout con CSS</h2>
-  </hgroup>
-  <article>
-      <pre class="prettyprint" data-lang="html">
-&lt;div id=&quot;header&quot;&gt;
-  &lt;h1&gt;T&#237;tulo&lt;/h1&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;nav&quot;&gt;
-  &lt;ol&gt;
-    &lt;li&gt;Menu1&lt;/li&gt;
-    &lt;li&gt;Menu2&lt;/li&gt;
-    &lt;li&gt;Menu3&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;section&quot;&gt;
-  &lt;h1&gt;Contenido 1&lt;/h1&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;footer&quot;&gt;
-  Pi&#233; de P&#225;gina 
-&lt;/div&gt;</pre>
-  </article>
-</slide>
-<slide>
-  <article>
-      <pre class="prettyprint" data-lang="css">
-#header {
-    background-color:black;
-    color:white;
-    text-align:center;
-    padding:5px;
-}
-#nav {
-    line-height:30px;  background-color:#eeeeee;
-    height:300px; width:100px;
-    float:left;
-    padding:5px; 
-}
-#section {
-    width:350px;
-    float:left;
-    padding:10px; 
-}
-#footer {
-    background-color:black;  color:white;
-    clear:both;
-    text-align:center;
-    padding:5px; 
-}</pre>
-  </article>
-</slide>
-
-<slide>
-  <hgroup>
-    <h2>Layout con CSS y HTML5</h2>
-  </hgroup>
-  <article>
-      <pre class="prettyprint" data-lang="html">
-&lt;header&gt;
-  &lt;h1&gt;T&#237;tulo&lt;/h1&gt;
-&lt;/header&gt;
-
-&lt;nav&gt;
-  &lt;ol&gt;
-    &lt;li&gt;Menu1&lt;/li&gt;
-    &lt;li&gt;Menu2&lt;/li&gt;
-    &lt;li&gt;Menu3&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;
-
-&lt;section&gt;
-  &lt;h1&gt;Contenido 1&lt;/h1&gt;
-&lt;/section&gt;
-
-&lt;footer&gt;
-  Pi&#233; de P&#225;gina 
-&lt;/footer&gt;</pre>
-  </article>
-</slide>
-
 <slide>
   <article>
   HTML5 ofrece nuevos elementos semánticos que definen diferentes partes de una página web:
@@ -440,18 +263,6 @@ p {
 </article>
 </slide>
 
-<slide>
-  <hgroup>
-    <h2>Links </h2>
-  </hgroup>
-  <article>
-    <ul>
-      <li><a href="http://iaw-dcic.github.io/html-css/layout1.html">Layout 1</a></li>
-      <li><a href="http://iaw-dcic.github.io/html-css/layout2.html">Layout 2</a></li>
-      <li><a href="http://iaw-dcic.github.io/html-css/layout3.html">Layout 3</a></li>
-    </ul>
-  </article>
-</slide>
 
 <slide>
   <hgroup>
@@ -459,9 +270,9 @@ p {
   </hgroup>
   <article>
     <ul>
-      <li><a href="https://www.w3schools.com/">W3Schools.com</a></li>
-      <li><a href="https://www.w3schools.com/html/default.asp">HTML5 Tutorial</a></li>
-      <li><a href="https://www.w3schools.com/css/default.asp">CSS Tutorial</a></li>
+      <li><a href="https://www.w3schools.com/html/default.asp">W3Schools.com HTML Tutorial</a></li>
+      <li><a href="https://htmlreference.io/">HTML Reference<li>
+      <li><a href="https://www.w3.org/TR/html52/">W3C Recomendation<li>
     </ul>
   </article>
 </slide>
